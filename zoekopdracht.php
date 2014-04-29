@@ -1,5 +1,5 @@
 <?php
-echo 'testing repo';
+//echo 'testing repo';
 include_once '_/components/php/common.php';
 include_once '_/components/php/header.inc.php';
 include_once '_/components/php/include_dao.php';
@@ -75,8 +75,9 @@ if(!isset($_SESSION['steps'])){
 				if ($_SESSION['steps'] == 3) {
 					include_once '_/components/php/contact.form.php';
 				} else {
-					include_once '_/components/php/CreateRequest.php';
-					include_once '_/components/php/contact.form.php';
+					//echo 'create';
+					include_once '_/components/php/createRequest.php';
+					//include_once '_/components/php/contact.form.php';
 					//include_once '_/components/php/searchRequest.form.php';
 					//delete all the session vars en set steps 1
 					//todo: delete all the session vars	

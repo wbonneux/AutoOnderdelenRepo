@@ -43,7 +43,7 @@ if (isset ( $_POST ['userContact'])) {
 	
 	
 	if ($validator->validate ( $_POST )) {
-		echo '<div class="alert alert-success">Thanks for sending us a request </div>';
+//		echo '<div class="alert alert-success">Thanks for sending us a request </div>';
 		$_SESSION['steps'] = 4;
 	}
 	else{
@@ -53,11 +53,11 @@ if (isset ( $_POST ['userContact'])) {
 		$required = $output ['required'];
 		foreach ( $required as $key => $val ) {
 			// echo $val;
-			echo '<div class="alert alert-warning">'.$lang['ERR_REQUIRED'] . $lang[$val] . '</div>';
+	//		echo '<div class="alert alert-warning">'.$lang['ERR_REQUIRED'] . $lang[$val] . '</div>';
 		}
 		foreach ( $errors as $key => $val ) {
 			// echo $val;
-			echo '<div class="alert alert-warning">'.$lang['ERR_INCORRECT'] . $lang[$val] . '</div>';
+		//	echo '<div class="alert alert-warning">'.$lang['ERR_INCORRECT'] . $lang[$val] . '</div>';
 		}
 	}
 }

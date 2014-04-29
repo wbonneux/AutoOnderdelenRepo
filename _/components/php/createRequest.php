@@ -1,4 +1,5 @@
 <?php 
+//echo 'start create';
 //Creating the request
 
 //step: create the userReply 			record
@@ -6,6 +7,8 @@
 //step: create the searchRequest 		record
 //step: create the searchParts 			record
 //step: create the searchRequestDetails record
+//step: create the pdf
+//step: mail the pdf to the client & the firm
 
 
 //userReply
@@ -16,7 +19,7 @@ $userReply->userId = getSessionVar('userId');
 $userReply->gsm = getSessionVar('userReplyGSM');
 $userReply->phone = getSessionVar('userReplyPhone');
 $userReply->email = getSessionVar('userReplyEmail');
-echo $userReplyDAO->insert($userReply).'<br>';
+//echo $userReplyDAO->insert($userReply).'<br>';
 
 //userContact
 $userContact = new UserContact();
@@ -34,7 +37,7 @@ $userContact->postalCodeId = getSessionVar('contact_postalcode');
 $userContact->details = getSessionVar('contact_details');
 //todo -> community,state
 $userContact->countryId = getSessionVar('contact_country');
-echo $userContactDAO->insert($userContact).'<br>';
+//echo $userContactDAO->insert($userContact).'<br>';
 
 //searchRequest
 $searchRequest = new SearchRequest();
@@ -45,6 +48,8 @@ $searchRequest->active = 1;
 $searchRequest->kilowatt = getSessionVar('searchRequestKiloWatt');
 $searchRequest->created = getSessionVar('searchRequestChassis');
 $searchRequestDAO->insert($searchRequest);
+// echo '<br>';
+// echo 'searchRequestid: '.$searchRequest->id.'<br>';
 
 //searchArticles/Parts
 $searchArticle = new SearchArticle();
@@ -53,6 +58,7 @@ $searchArticle->articleNumber = getSessionVar('partName');
 $searchArticle->descr = getSessionVar('partDetails');
 $searchArticle->categoryId = getSessionVar('partCategory');
 $searchArticle->subCategoryId = getSessionVar('partSubCategory');
+$searchArticle->searchRequestId = $searchRequest->id;
 //insert & update the image field with the uploaded url
 $searchArticleDAO->insert($searchArticle);
 //upload photo to directory(images\SearchRequests\SearchParts\'id')
@@ -62,7 +68,34 @@ $searchArticleDAO->insert($searchArticle);
 //step: update searchPart with url of the saved folder 
 
 
+//searchRequestDetails
+$searchRequestDetails = new SearchRequestDetails();
+$searchRequestDetailsDAO = DAOFactory::getSearchRequestDetailsDAO();
+$searchRequestDetails->carBrandId = getSessionVar('brand');
+$searchRequestDetails->carModelId = getSessionVar('model');
+$searchRequestDetails->buildYearId = getSessionVar('buildYear');
+$searchRequestDetails->buildMonthId = getSessionVar('buildMonth');
+$searchRequestDetails->carExecutionId = getSessionVar('carexecution');
+$searchRequestDetails->carDoorsId = getSessionVar('cardoors');
+$searchRequestDetails->gearboxId = getSessionVar('cargearbox');
+$searchRequestDetails->driveTypeId = getSessionVar('cardrivetype');
+$searchRequestDetails->carenginetype = getSessionVar('carenginetype');
+$searchRequestDetails->details = getSessionVar('details');
+$searchRequestDetails->searchRequestId = $searchRequest->id;
+$searchRequestDetailsDAO->insert($searchRequestDetails);
 
+//after all inserts we can create the pdf
+include_once './_/components/php/pdf/myPDF.class.php';
+$pdf = new PDF();
+$pdf->fillObjects($searchRequest,$searchRequestDetails,$userContact,$userReply,$searchArticle);
+$pdf->AliasNbPages();
+$pdf->AddPage();
+$pdf->printHeader('myTitle');
+$pdf->SetFont('Times','',12);
+
+//save the pdf in a directory SearchRequestPdf/'SearchRequest_'.$searchRequest->id.'.pdf');
+	//step: test for existence & create file
+$pdf->Output('SearchRequestPDF/SearchRequest_'.$searchRequest->id.'.pdf','F');
 
 
 function getSessionVar($sessionVar){
@@ -72,6 +105,7 @@ function getSessionVar($sessionVar){
 		return null;
 	}
 }
+
 
 
 ?>
