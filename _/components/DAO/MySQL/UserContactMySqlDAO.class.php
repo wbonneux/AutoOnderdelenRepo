@@ -55,18 +55,20 @@ class UserContactMySqlDAO extends BaseCommonMySqlDAO {
  	 * Insert record to table
  	 */
 	public function insert($userContact){
-		$sql = 'INSERT INTO USER_CONTACT (O_USER_IDF_TECH, T_I_NAME, T_I_FNAME, T_I_EMAIL, T_I_PHONE, T_I_GSM, T_I_STREET, T_I_HOUSENR, T_I_BUSNR, C_CODEPOSTALCODE_IDF_TECH, C_CODECOUNTRY_IDF_TECH, T_I_DETAILS, D_I_BEGIN, D_I_END, S_I_CREATE_TECH) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO USER_CONTACT (O_USER_IDF_TECH, T_I_NAME, T_I_FNAME,T_I_COMPANY_NAME, T_I_EMAIL, T_I_PHONE, T_I_GSM, T_I_STREET, T_I_HOUSENR, T_I_BUSNR, T_I_POSTALCODE, T_I_COMMUNITY, C_CODECOUNTRY_IDF_TECH, T_I_DETAILS, D_I_BEGIN, D_I_END, S_I_CREATE_TECH) VALUES (?, ?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($userContact->userId);
 		$sqlQuery->set($userContact->name);
 		$sqlQuery->set($userContact->firstName);
+		$sqlQuery->set($userContact->companyName);
 		$sqlQuery->set($userContact->email);
 		$sqlQuery->set($userContact->phone);
 		$sqlQuery->set($userContact->gsm);
 		$sqlQuery->set($userContact->street);
 		$sqlQuery->set($userContact->houseNumber);
 		$sqlQuery->set($userContact->bus);
-		$sqlQuery->set($userContact->postalCodeId);
+		$sqlQuery->set($userContact->postalCode);
+		$sqlQuery->set($userContact->community);
 		$sqlQuery->set($userContact->countryId);
 		$sqlQuery->set($userContact->details);
 		$sqlQuery->set($userContact->dateBegin);
@@ -81,19 +83,21 @@ class UserContactMySqlDAO extends BaseCommonMySqlDAO {
  	 * Update record in table
  	 */
 	public function update($userContact){
-		$sql = 'UPDATE USER_CONTACT SET O_USER_IDF_TECH = ?, T_I_NAME = ?, T_I_FNAME = ?, T_I_EMAIL = ?, T_I_PHONE = ?, T_I_GSM = ?, T_I_STREET = ?, T_I_HOUSENR = ?, T_I_BUSNR = ?, C_CODEPOSTALCODE_IDF_TECH = ?, C_CODECOUNTRY_IDF_TECH = ?, T_I_DETAILS = ?, D_I_BEGIN = ?, D_I_END = ?, S_I_MOD_TECH WHERE O_I_IDF_TECH = ?';
+		$sql = 'UPDATE USER_CONTACT SET O_USER_IDF_TECH = ?, T_I_NAME = ?, T_I_FNAME = ?, T_I_COMPANY_NAME = ?, T_I_EMAIL = ?, T_I_PHONE = ?, T_I_GSM = ?, T_I_STREET = ?, T_I_HOUSENR = ?, T_I_BUSNR = ?, T_I_POSTALCODE = ?, T_I_COMMUNITY = ?, C_CODECOUNTRY_IDF_TECH = ?, T_I_DETAILS = ?, D_I_BEGIN = ?, D_I_END = ?, S_I_MOD_TECH WHERE O_I_IDF_TECH = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($userContact->userId);
 		$sqlQuery->set($userContact->name);
 		$sqlQuery->set($userContact->firstName);
+		$sqlQuery->set($userContact->companyName);
 		$sqlQuery->set($userContact->email);
 		$sqlQuery->set($userContact->phone);
 		$sqlQuery->set($userContact->gsm);
 		$sqlQuery->set($userContact->street);
 		$sqlQuery->set($userContact->houseNumber);
 		$sqlQuery->set($userContact->bus);
-		$sqlQuery->set($userContact->postalCodeId);
+		$sqlQuery->set($userContact->postalCode);
+		$sqlQuery->set($userContact->community);
 		$sqlQuery->set($userContact->countryId);
 		$sqlQuery->set($userContact->dateBegin);
 		$sqlQuery->set($userContact->dateEnd);
@@ -116,13 +120,15 @@ class UserContactMySqlDAO extends BaseCommonMySqlDAO {
 		$userContact->userId = $row['O_USER_IDF_TECH'];
 		$userContact->name = $row['T_I_NAME'];
 		$userContact->firstName = $row['T_I_FNAME'];
+		$userContact->companyName = $row['T_I_COMPANY_NAME'];
 		$userContact->email = $row['T_I_EMAIL'];
 		$userContact->phone = $row['T_I_PHONE'];
 		$userContact->gsm = $row['T_I_GSM'];
 		$userContact->street = $row['T_I_STREET'];
 		$userContact->houseNumber = $row['T_I_HOUSENR'];
 		$userContact->bus = $row['T_I_bus'];
-		$userContact->postalCodeId = $row['C_CODEPOSTALCODE_IDF_TECH'];
+		$userContact->postalCode = $row['T_I_POSTALCODE'];
+		$userContact->community = $row['T_I_COMMUNITY'];
 		$userContact->countryId = $row['C_CODECOUNTRY_IDF_TECH'];
 		$userContact->details = $row['T_I_DETAIL'];
 		$userContact->dateBegin = $row['D_I_BEGIN'];

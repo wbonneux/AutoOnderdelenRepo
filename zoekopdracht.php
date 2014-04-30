@@ -18,6 +18,7 @@ $enginetypes = $codeTableDAO->getAllDescrByLangOrdered ( CONSTANT ( 'CARENGINE' 
 $gearboxes = $codeTableDAO->getAllDescrByLangAndIdOrdered ( CONSTANT ( 'CARGEARBOX' ), 'nl', 'asc' );
 $categories = $codeTableDAO->getAllDescrByLangAndIdOrdered ( CONSTANT ( 'CARCATEGORY' ), 'nl', 'asc' );
 $subcategories = $codeTableDAO->getAllDescrByLangAndIdOrdered ( CONSTANT ( 'CARSUBCATEGORY' ), 'nl', 'asc' );
+$countries = $codeTableDAO->getAllDescrByLangAndIdOrdered(CONSTANT('COUNTRY'), 'nl', 'asc');
 if(!isset($_SESSION['steps'])){
 	$_SESSION['steps'] = 1;
 }

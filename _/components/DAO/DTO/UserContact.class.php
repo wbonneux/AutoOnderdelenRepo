@@ -16,6 +16,8 @@
 	var $userId;
 //	T_I_NAME
 	var $name;
+//	T_I_COMPANY_NAME
+	var $companyName;
 //	T_I_FNAME
 	var $firstName;
 //	T_I_EMAIL
@@ -30,8 +32,10 @@
 	var $houseNumber;
 //	T_I_BUS
 	var $bus;
-//	C_CODEPOSTAL_IDF_TECH
-	var $postalCodeId;
+//	T_I_CODEPOSTAL
+	var $postalCode;
+//	T_I_COMMUNITY
+	var $community;
 //	C_CODECOUNTRY_IDF_TECH
 	var $countryId;
 //	T_I_DETAILS

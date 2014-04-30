@@ -76,6 +76,7 @@ $lang['SEARCHCONTACT_HOUSEBUS'] = 'Bus';
 $lang['SEARCHCONTACT_POSTALCODE'] = 'Postcode';
 $lang['SEARCHCONTACT_COMMUNITY'] = 'Gemeente';
 $lang['SEARCHCONTACT_COUNTRY'] = 'Land';
+$lang['SELECT_COUNTRY'] = 'Selecteer een land';
 $lang['SEARCHCONTACT_STATE'] = 'Provincie';
 $lang['SEARCHCONTACT_EMAIL'] = 'Email adres';
 $lang['SEARCHCONTACT_EMAILCONFIRM'] = 'Email adres bevestigen';

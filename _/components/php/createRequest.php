@@ -26,6 +26,7 @@ $userContact = new UserContact();
 $userContactDAO = DAOFactory::getUserContactDAO();
 $userContact->name = getSessionVar('contact_name');
 $userContact->firstName = getSessionVar('contact_fname');
+$userContact->companyName = getSessionVar('contact_compname');
 $userContact->email = getSessionVar('contact_email');
 $userContact->gsm = getSessionVar('contact_gsm');
 $userContact->phone = getSessionVar('contact_tel');
@@ -33,7 +34,7 @@ $userContact->phone = getSessionVar('contact_tel');
 $userContact->street = getSessionVar('contact_street');
 $userContact->houseNumber = getSessionVar('contact_housenr');
 $userContact->bus = getSessionVar('contact_housebus');
-$userContact->postalCodeId = getSessionVar('contact_postalcode');
+$userContact->postalCode = getSessionVar('contact_postalcode');
 $userContact->details = getSessionVar('contact_details');
 //todo -> community,state
 $userContact->countryId = getSessionVar('contact_country');
@@ -121,6 +122,7 @@ $pdf->printImage($searchArticle->image);
 $pdf->printHeader($lang['SEARCHCONTACT_TITLE']);
 $pdf->printLabelValue($lang['SEARCHCONTACT_NAME'], $userContact->name);
 $pdf->printLabelValue($lang['SEARCHCONTACT_FNAME'], $userContact->firstName);
+$pdf->printLabelValue($lang['SEARCHCONTACT_COMPNAME'], $userContact->companyName);
 $pdf->printLabelValue($lang['SEARCHCONTACT_TEL'], $userContact->phone);
 //$pdf->printLabelValue($lang['SEARCHCONTACT_FAX'], $userContact->);
 $pdf->printLabelValue($lang['SEARCHCONTACT_GSM'], $userContact->gsm);
@@ -128,8 +130,8 @@ $pdf->printLabelValue($lang['SEARCHCONTACT_EMAIL'], $userContact->email);
 $pdf->printLabelValue($lang['SEARCHCONTACT_STREET'], $userContact->street);
 $pdf->printLabelValue($lang['SEARCHCONTACT_HOUSENR'], $userContact->houseNumber);
 $pdf->printLabelValue($lang['SEARCHCONTACT_HOUSEBUS'], $userContact->bus);
-$pdf->printLabelValue($lang['SEARCHCONTACT_POSTALCODE'], $userContact->postalCodeId);
-$pdf->printLabelValue($lang['SEARCHCONTACT_COUNTRY'], $userContact->countryId);
+$pdf->printLabelValue($lang['SEARCHCONTACT_POSTALCODE'], $userContact->postalCode);
+$pdf->printLabelId($lang['SEARCHCONTACT_COUNTRY'], $userContact->countryId,'CODE_COUNTRY');
 $pdf->printLabelValue($lang['SEARCHCONTACT_DETAILS'], $userContact->details);
 
 
