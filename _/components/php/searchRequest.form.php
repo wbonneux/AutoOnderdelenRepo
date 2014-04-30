@@ -45,6 +45,7 @@
 			<option value=''><?php echo $lang['SELECT_BUILDYEAR']; ?></option>
 			<?php
 			foreach ( $years as $year ) {
+
 				if(isset($_SESSION['buildYear']) & $_SESSION['buildYear'] === $year->id){
 					echo '<option selected value=' . $year->id . '>' . $year->descr . '</option>';
 				}else{

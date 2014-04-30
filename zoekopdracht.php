@@ -71,6 +71,9 @@ if(!isset($_SESSION['steps'])){
 					include_once '_/components/php/contact.form.php';
 				}
 			}
+			if (isset ( $_POST ['backHome'] )) {
+				include_once '_/components/php/searchRequest.form.php';
+			}
 			if (isset ( $_POST ['userContact'] )) {
 				include '_/components/php/contact.check.form.php';
 				if ($_SESSION['steps'] == 3) {
@@ -78,6 +81,7 @@ if(!isset($_SESSION['steps'])){
 				} else {
 					//echo 'create';
 					include_once '_/components/php/createRequest.php';
+					include_once 'success.php';
 					//include_once '_/components/php/contact.form.php';
 					//include_once '_/components/php/searchRequest.form.php';
 					//delete all the session vars en set steps 1

@@ -4,7 +4,8 @@ $validation = array ();
 $mandatory = array (
 		'brand' => 'brand',
 		'model' => 'model',
-		'buildYear' => 'buildYear'
+		'buildYear' => 'buildYear',
+		'carenginetype' => 'carenginetype'
 );
 $sanitize = array ();
 $validator = new FormValidator ( $validation, $mandatory, $sanitize );

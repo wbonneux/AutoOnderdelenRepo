@@ -31,7 +31,7 @@ $lang['SEARCHREQUEST_DOORNUMBER'] 			= 'Aantal deuren';
 $lang['SELECT_DOORNUMBER'] 			 		= 'Selecteer het aantal deuren';
 $lang['SEARCHREQUEST_DRIVETYPE'] 			= 'Aandrijving';
 $lang['SELECT_DRIVETYPE'] 					= 'Selecteer een aandrijving';
-$lang['SEARCHREQUEST_ENGINETYPE'] 			= 'MotorType';
+$lang['SEARCHREQUEST_ENGINETYPE'] 			= 'Motortype';
 $lang['SELECT_ENGINETYPE'] 					= 'Selecteer een motorType';
 $lang['SEARCHREQUEST_GEARBOX'] 				= 'Versnellingsbak';
 $lang['SELECT_GEARBOX'] 					= 'Selecteer een versnellingsbak';
@@ -41,9 +41,13 @@ $lang['SEARCHREQUEST_SAVE'] 				= 'Volgende stap';
 $lang['BACK_SEARCHDETAILS']					= 'Terug';
 
 $lang['BACK']					= 'Terug';
+$lang['BACK_HOME']				= 'HOME';
+$lang['THANK_YOU']				= 'Dank u voor uw aanvraag. U zal zo snel mogelijk gecontacteerd worden door onze medewerkers!';
 
 $lang['brand']								= 'Merk';
 $lang['model']								= 'Model';
+$lang['buildYear']							= 'Bouwjaar';
+$lang['carenginetype']						= 'Motortype';
 $lang['partName']							= 'Onderdeel';
 
 //SEARCH PART
@@ -120,6 +124,11 @@ $lang['CAR_ENGINE_REQ'] = 'Het type van de motor is vereist in de zoekopdracht';
 //PDF
 $lang['HEADER_SEARCHREQUEST_DETAILS'] = 'Zoekopdracht - details';
 
-
+//CONTACTPAGE
+$lang['CONTACTPAGE_TITLE'] 				= 'Contacteer ons';
+$lang['CONTACTPAGE_SUBTITLE']			= 'Hier vindt u al onze contactgegevens';
+$lang['CONTACTPAGE_FORMTITLE'] 			= 'We zijn ook altijd bereikbaar via telefoon & fax';
+$lang['CONTACTPAGE_FORMTEXT'] 			= 'Hebt u specifieke vragen of inlichtingen nodig, kan u het onderstaand formulier gebruiken. U kan ons ook bereiken via telefoon, fax of u kan ons komen bezoeken op het vermelde adres. Onderaan vindt u onze positie op de kaart.';
+$lang['CONTACTPAGE_QUESTION']			= 'Vraag/Inlichting';
 
 ?>

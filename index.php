@@ -1,23 +1,6 @@
 <?php
 include_once '_/components/php/common.php';
 include_once '_/components/php/header.inc.php';
-include_once '_/components/php/include_dao.php';
-
-
-$carModelFact = DAOFactory::getCodeCarModelDAO();
-$carModels = $carModelFact->getCarModelsByBrandId(2, 'nl');
-
-$carBrands = $carBrand->getAllDescrByLang(constant('CARBRAND'), 'nl');
-
-foreach ($carModels as $carModel){
-	echo 'Model: '.$carModel->descrNdls.'<br>';
-}
-
-foreach ($carBrands as $carBrand){
-	echo 'Merk: '.$carBrand->descr.'<br>';
-}
-
-
 ?>
 <div class="section">
 

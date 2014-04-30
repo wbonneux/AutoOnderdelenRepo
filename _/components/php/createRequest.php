@@ -148,6 +148,13 @@ $pdf->printLabelYesNo($lang['USERREPLY_EMAIL'], $userReply->email);
 $pdf->Output('SearchRequestPDF/SearchRequest_'.$searchRequest->id.'.pdf','F');
 
 
+//email the pdf to the requester and the firm
+
+//reset all the session vars & reset the steps
+session_destroy();
+
+
+
 function getSessionVar($sessionVar){
 	if(isset($_SESSION[$sessionVar])){
 		return $_SESSION[$sessionVar];
