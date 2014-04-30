@@ -25,10 +25,10 @@
  				<label for="partDetails" class="col-lg-12" style='padding-left:0px'><?php echo $lang['SEARCHPART_PREVIEW']; ?></label>
  				<?php
  				if(isset($_SESSION['File'])){
-					echo '<img id="previewPhoto" class"form-control" name="previewPhoto" src="'.$_SESSION['File'].'" alt="Uploaded image" width="50%"/>';
+					echo '<img id="previewPhoto" name="previewPhoto" src="'.$_SESSION['File'].'" alt="Uploaded image" width="50%"/>';
 				}
 				else{
-					echo '<img id="previewPhoto" class="form-control" name="previewPhoto" src="#" alt="Uploaded image" width="50%"/>';
+					echo '<img id="previewPhoto" name="previewPhoto" src="#" alt="Uploaded image" width="50%"/>';
 				}
 // 				if(isset($_POST['searchRequestArticle']))
 // 				{

@@ -172,7 +172,7 @@ class BaseCodeMySqlDAO extends BaseMySqlDAO implements BaseCodeDAO{
 		$sqlQuery->setString($codeTable->descrDuits);
 		$sqlQuery->set($codeTable->dateBegin);
 		$sqlQuery->set($codeTable->dateEnd);
-		$sqlQuery->set((new \DateTime())->format('Y-m-d H:i:s'));
+		//$sqlQuery->set((new DateTime())->format('Y-m-d H:i:s'));
 // 		$id = $this->executeInsert($sqlQuery);	
 		return $codeTable->$id;
 	}

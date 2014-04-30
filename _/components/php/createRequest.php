@@ -148,10 +148,48 @@ $pdf->printLabelYesNo($lang['USERREPLY_EMAIL'], $userReply->email);
 $pdf->Output('SearchRequestPDF/SearchRequest_'.$searchRequest->id.'.pdf','F');
 
 
+//documentation for Output method here: http://www.fpdf.org/en/doc/output.htm
+$attach_pdf_multipart = chunk_split( base64_encode( $pdf->Output( '', 'S' ) ) );
+
+
+$to = $userContact->email;
+$headers = "From: wbonneux@gmail.com\r\nReply-To: wbonneux@gmail.com";
+//add boundary string and mime type specification
+$random_hash = md5(date('r', time()));
+$headers .= "\r\nContent-Type: multipart/mixed; boundary=\"PHP-mixed-".$random_hash."\"";
+
+
+
+$msg = "Content-Type: application/octet-stream; name=\"attachment.pdf\"\r\n";
+$msg .= "Content-Transfer-Encoding: base64\r\n";
+$msg .= "Content-Disposition: attachment\r\n";
+$msg .= $attach_pdf_multipart . "\r\n";
+
+$msg .= "Content-Type: text/html; charset=\"iso-8859-1\"\r\n";
+$msg .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+$msg .= "<p>".$userContact->name.' '.$userContact->firstName."</p>\r\n\r\n";
+
+global $message;
+$message = '';
+$mail_sent = @mail( $to, $subject, $msg, $headers );
+//@mail( $to1, $subject, $msg, $headers );
+if(!empty($mail_sent)):
+$message = "Invoice sent succuessfully";
+else:
+$message = "Error occured. Please try again.";
+endif;
+
+
 //email the pdf to the requester and the firm
+$to = $userContact->email;
+$from = 'wbonneux@gmail.com';
+$subject = 'zoekopdracht: '.$searchRequest->id;
+
+
+
 
 //reset all the session vars & reset the steps
-session_destroy();
+//session_destroy();
 
 
 

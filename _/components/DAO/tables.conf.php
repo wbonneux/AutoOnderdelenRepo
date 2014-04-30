@@ -1,23 +1,23 @@
 <?php
-define('CARBRAND','CODE_CAR_BRAND');
-define('CARMODEL','CODE_CAR_MODEL');
-define('CARBUILDYEAR','CODE_CAR_BUILDYEAR');
-define('CARBUILDMONTH','CODE_CAR_BUILDMONTH');
-define('CAREXECUTION','CODE_CAR_EXECUTION');
-define('CARDOORS','CODE_CAR_DOORS');
-define('CARGEARBOX','CODE_CAR_GEARBOX');
-define('CARDRIVETYPE','CODE_CAR_DRIVETYPE');
-define('CARENGINE','CODE_CAR_ENGINETYPE');
-define('POSTALCODE','CODE_POSTALCODE');
-define('COUNTRY','CODE_COUNTRY');
-define('LANGUAGE','CODE_LANGUAGE');
-define('SEARCHREQUEST','SEARCH_REQUEST');
-define('SEARCHARTICLE','SEARCH_ARTICLE');
-define('USER','USER_USER');
-define('USERCONTACT','USER_CONTACT');
-define('USERREPLY','USER_REPLY');
-define('CARCATEGORY','CODE_CAR_CATEGORY');
-define('CARSUBCATEGORY','CODE_CAR_SUBCATEGORY');
+define('CARBRAND','code_car_brand');
+define('CARMODEL','code_car_model');
+define('CARBUILDYEAR','code_car_buildyear');
+define('CARBUILDMONTH','code_car_buildmonth');
+define('CAREXECUTION','code_car_execution');
+define('CARDOORS','code_car_doors');
+define('CARGEARBOX','code_car_gearbox');
+define('CARDRIVETYPE','code_car_drivetype');
+define('CARENGINE','code_car_enginetype');
+define('POSTALCODE','code_postalcode');
+define('COUNTRY','code_country');
+define('LANGUAGE','code_language');
+define('SEARCHREQUEST','search_request');
+define('SEARCHARTICLE','search_article');
+define('USER','user_user');
+define('USERCONTACT','user_contact');
+define('USERREPLY','user_reply');
+define('CARCATEGORY','code_car_category');
+define('CARSUBCATEGORY','code_car_subcategory');
 
 
 

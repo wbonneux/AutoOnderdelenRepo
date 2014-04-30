@@ -157,7 +157,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // ALERT DATA-API
   // ==============
 
-  $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
+//  $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
 
 }(window.jQuery);
 
@@ -262,12 +262,12 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // BUTTON DATA-API
   // ===============
 
-  $(document).on('click.bs.button.data-api', '[data-toggle^=button]', function (e) {
-    var $btn = $(e.target)
-    if (!$btn.hasClass('btn')) $btn = $btn.closest('.btn')
-    $btn.button('toggle')
-    e.preventDefault()
-  })
+//  $(document).on('click.bs.button.data-api', '[data-toggle^=button]', function (e) {
+//    var $btn = $(e.target)
+//    if (!$btn.hasClass('btn')) $btn = $btn.closest('.btn')
+//    $btn.button('toggle')
+//    e.preventDefault()
+//  })
 
 }(window.jQuery);
 
@@ -464,28 +464,28 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // CAROUSEL DATA-API
   // =================
 
-  $(document).on('click.bs.carousel.data-api', '[data-slide], [data-slide-to]', function (e) {
-    var $this   = $(this), href
-    var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
-    var options = $.extend({}, $target.data(), $this.data())
-    var slideIndex = $this.attr('data-slide-to')
-    if (slideIndex) options.interval = false
+//  $(document).on('click.bs.carousel.data-api', '[data-slide], [data-slide-to]', function (e) {
+//    var $this   = $(this), href
+//    var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
+//    var options = $.extend({}, $target.data(), $this.data())
+//    var slideIndex = $this.attr('data-slide-to')
+//    if (slideIndex) options.interval = false
+//
+//    $target.carousel(options)
+//
+//    if (slideIndex = $this.attr('data-slide-to')) {
+//      $target.data('bs.carousel').to(slideIndex)
+//    }
+//
+//    e.preventDefault()
+//  })
 
-    $target.carousel(options)
-
-    if (slideIndex = $this.attr('data-slide-to')) {
-      $target.data('bs.carousel').to(slideIndex)
-    }
-
-    e.preventDefault()
-  })
-
-  $(window).on('load', function () {
-    $('[data-ride="carousel"]').each(function () {
-      var $carousel = $(this)
-      $carousel.carousel($carousel.data())
-    })
-  })
+//  $(window).on('load', function () {
+//    $('[data-ride="carousel"]').each(function () {
+//      var $carousel = $(this)
+//      $carousel.carousel($carousel.data())
+//    })
+//  })
 
 }(window.jQuery);
 
@@ -648,24 +648,24 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // COLLAPSE DATA-API
   // =================
 
-  $(document).on('click.bs.collapse.data-api', '[data-toggle=collapse]', function (e) {
-    var $this   = $(this), href
-    var target  = $this.attr('data-target')
-        || e.preventDefault()
-        || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') //strip for ie7
-    var $target = $(target)
-    var data    = $target.data('bs.collapse')
-    var option  = data ? 'toggle' : $this.data()
-    var parent  = $this.attr('data-parent')
-    var $parent = parent && $(parent)
-
-    if (!data || !data.transitioning) {
-      if ($parent) $parent.find('[data-toggle=collapse][data-parent="' + parent + '"]').not($this).addClass('collapsed')
-      $this[$target.hasClass('in') ? 'addClass' : 'removeClass']('collapsed')
-    }
-
-    $target.collapse(option)
-  })
+//  $(document).on('click.bs.collapse.data-api', '[data-toggle=collapse]', function (e) {
+//    var $this   = $(this), href
+//    var target  = $this.attr('data-target')
+//        || e.preventDefault()
+//        || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') //strip for ie7
+//    var $target = $(target)
+//    var data    = $target.data('bs.collapse')
+//    var option  = data ? 'toggle' : $this.data()
+//    var parent  = $this.attr('data-parent')
+//    var $parent = parent && $(parent)
+//
+//    if (!data || !data.transitioning) {
+//      if ($parent) $parent.find('[data-toggle=collapse][data-parent="' + parent + '"]').not($this).addClass('collapsed')
+//      $this[$target.hasClass('in') ? 'addClass' : 'removeClass']('collapsed')
+//    }
+//
+//    $target.collapse(option)
+//  })
 
 }(window.jQuery);
 
@@ -816,7 +816,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   // APPLY TO STANDARD DROPDOWN ELEMENTS
   // ===================================
 
-  $(document)
+  jQuery(document)
     .on('click.bs.dropdown.data-api', clearMenus)
     .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
     .on('click.bs.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
