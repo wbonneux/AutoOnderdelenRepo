@@ -82,7 +82,7 @@ class SearchArticleMySqlDAO extends BaseCommonMySqlDAO{
 		
 		$sqlQuery->set($searchArticle->searchRequestId);
 		$sqlQuery->set($searchArticle->categoryId);
-		$sqlQuery->set($searchArticle->subCategory);
+		$sqlQuery->set($searchArticle->subCategoryId);
 		$sqlQuery->setString($searchArticle->descr);
 		$sqlQuery->setString($searchArticle->image);
 		$sqlQuery->setString($searchArticle->articleNumber);

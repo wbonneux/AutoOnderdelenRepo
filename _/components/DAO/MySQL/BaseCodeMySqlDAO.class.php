@@ -107,7 +107,7 @@ class BaseCodeMySqlDAO extends BaseMySqlDAO implements BaseCodeDAO{
 	 */
 	public function getDescrByLang($id,$table,$lang){
 		
-		$sql = 'SELECT '.$this->getDescrColumn($lang) .'FROM '.$table.' WHERE C_I_IDF_TECH = '.$id;
+		$sql = 'SELECT '.$this->getDescrColumn($lang) .' FROM '.$table.' WHERE C_I_IDF_TECH = '.$id;
 		$sqlQuery = new SqlQuery($sql);
 		return $this->querySingleResult($sqlQuery);
 	}

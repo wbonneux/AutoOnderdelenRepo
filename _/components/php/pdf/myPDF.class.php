@@ -7,12 +7,15 @@ class PDF extends FPDF {
 	var$userContact = null;
 	var $userReply = null;
 	var $searchArticle = null;
+	var $baseCodeDAO = null;
+	
 	function fillObjects($searchRequest, $searchRequestDetails, $userContact, $userReply, $searchArticle){
 		$this->searchRequest = $searchRequest;
 		$this->searchRequestDetails = $searchRequestDetails;
 		$this->searchArticle = $searchArticle;
 		$this->userContact = $userContact;
 		$this->userReply = $userReply;
+		$this->baseCodeDAO = DAOFactory::getCodeTableDAO();
 	}
 	function Header() {
 		// Logo
@@ -36,13 +39,77 @@ class PDF extends FPDF {
 		$this->Ln ( 4 );
 	}
 	
+	function printLabelValue($label, $value){
+		$this->printLabel($label);
+		$this->printSpace(2);
+		if($value == null || $value == ''){
+			$value = 'nihil';
+		}
+		$this->printValue($value);
+		$this->Ln(2);
+	}
+	
+	function printLabelYesNo($label, $value){
+		$this->printLabel($label);
+		$this->printSpace(2);
+		if($value == 1){
+			$value = 'Ja';
+		}else{
+			$value = 'Nee';
+		}
+		$this->printValue($value);
+		$this->Ln(2);
+	}
+	
+	function printSpace($width){
+		$this->Cell($width);
+	}
+	
+	function printLabelId($label,$id, $table){
+		$this->printLabel($label);
+		$this->printSpace(2);
+		if($id == null || $id == ''){
+			$value = 'nihil';
+		}else{
+			$value = $this->baseCodeDAO->getDescrByLang($id, $table, 'nl');
+		}
+		$this->printValue($value);
+		$this->Ln(2);
+	}
+	
 	function printTextArea($label,$value){
+		$this->printLabel($label);
+		$this->Ln(4);
+		$this->MultiCell(0, 5, $value);
+		$this->Ln(5);
+	}
+	
+	function printImage($image)
+	{
+		if($image != null & $image != ''){
+			$this->Ln(3);
+			$this->Image($image,10,150,0,50);
+			$this->Ln(60);
+		}
 		
 	}
 	
-	function printLabelValu($label,$value){
-		
+
+	
+	function printLabel($label){
+		$this->SetFont ( 'Arial', 'B', 10 );
+		$this->SetFillColor(200,220,255);
+		// label
+		$this->Cell (35, 4, $label, 0, 0, 'L',true );
 	}
+	
+	function printValue($value){
+		$this->SetFont ( 'Arial', 'B', 10 );
+		$this->SetFillColor(255,255,255);
+		// label
+		$this->Cell (25, 4, $value, 0, 1, 'L',true );
+	}
+	
 	
 	// Page footer
 	function Footer() {

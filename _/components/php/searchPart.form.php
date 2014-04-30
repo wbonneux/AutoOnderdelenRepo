@@ -1,51 +1,67 @@
-<div id="errors">
-</div>
+<div id="errors"></div>
 <form role="form" method="post" enctype="multipart/form-data">
 	<div id="itemRows">
 		<!-- 		<p id="rowNum1"> -->
 		<div class=" row col-lg-12">
 			<div class="col-lg-6">
 				<label for="partName"><?php echo $lang['SEARCHPART_PART']; ?></label>
-				<input type="text" name="partName" class="form-control" id="partName" value="<?php if(isset($_SESSION['partName'])){echo $_SESSION['partName'];}?>"/>
+				<input type="text" name="partName" class="form-control"
+					id="partName"
+					value="<?php if(isset($_SESSION['partName'])){echo $_SESSION['partName'];}?>" />
 			</div>
 			<div class="col-lg-6">
 				<label for="input3"><?php echo $lang['SEARCHPART_PHOTO']; ?></label>
-<!-- 				<input type="file" name="uploadPhoto" id="uploadPhoto" class="form-control"><br> -->
+				<input type="file" name="uploadPhoto" id="uploadPhoto" class="form-control"><br>
 			</div>
 		</div>
 		<div class=" row col-lg-12" style="padding-bottom: 0px;">
 			<div class="col-lg-6" style="margin-bottom: 5px;">
 				<label for="partDetails"><?php echo $lang['SEARCHPART_DETAIL']; ?></label>
-				<textarea name="partDetails" class="form-control" rows="6" id="details" id="input4"><?php if(isset($_SESSION['partDetails'])){echo $_SESSION['partDetails'];}?></textarea>
+				<textarea name="partDetails" class="form-control" rows="6"
+					id="details" id="input4"><?php if(isset($_SESSION['partDetails'])){echo $_SESSION['partDetails'];}?></textarea>
 			</div>
-			
-			<div id="previewPhoto" class="col-lg-6">
-			 	<img id="previewPhoto" name="previewPhoto" src="#" alt="your image" />
-			</div>
+
+ 			<div id="previewPhotoContainer" class="col-lg-6">
+ 				<label for="partDetails" class="col-lg-12" style='padding-left:0px'><?php echo $lang['SEARCHPART_PREVIEW']; ?></label>
+ 				<?php
+ 				if(isset($_SESSION['File'])){
+					echo '<img id="previewPhoto" class"form-control" name="previewPhoto" src="'.$_SESSION['File'].'" alt="Uploaded image" width="50%"/>';
+				}
+				else{
+					echo '<img id="previewPhoto" class="form-control" name="previewPhoto" src="#" alt="Uploaded image" width="50%"/>';
+				}
+// 				if(isset($_POST['searchRequestArticle']))
+// 				{
+// 					echo '<img id="previewPhoto" name="previewPhoto" src="#" alt="Uploaded image" width="100%"/>';
+// 				}
+ 				?>
+			 	
+ 			</div>
 		</div>
 		<div class=" row col-lg-12" style="padding-bottom: 0px;">
 			<div class="form-group col-lg-12">
-					<p>
-						<input type="submit" name="searchRequestArticle" class="btn btn-primary"
-							value="<?php echo $lang['SEARCHPART_SAVE']; ?>">
-						<!-- <input type="submit" name="bachSearchRequestDetails" class="btn btn-primary" value="<?php //echo $lang['BACK_SEARCHDETAILS']; ?>" onclick="window.location='zoekopdracht.php';" /> --> 
-						<input type="submit" name="backSearchRequestDetails" class="btn btn-primary" value="<?php echo $lang['BACK']; ?>" />
-					</p>
+				<p>
+					<input type="submit" name="searchRequestArticle"
+						class="btn btn-primary"
+						value="<?php echo $lang['SEARCHPART_SAVE']; ?>"> <input
+						type="submit" name="backSearchRequestDetails"
+						class="btn btn-primary" value="<?php echo $lang['BACK']; ?>" />
+				</p>
 			</div>
-		</div>
-		<div class=" row col-lg-12" style="padding-bottom: 0px;">
-			<input type="file" name="filePhoto" value="" id="filePhoto" class="required borrowerImageFile" data-errormsg="PhotoUploadErrorMsg">
-     		<img id="previewHolder" alt="Uploaded Image Preview Holder" width="250px" height="250px"/>
 		</div>
 	</div>
 	<div id="itemRows">
-		<div class="row col-lg-12">
-			
-		</div>
+		<div class="row col-lg-12"></div>
 	</div>
 </form>
 
 <script type="text/javascript">
+
+$("#uploadPhoto").change(function() {
+	alert("I am an alert box!");
+    readURL(this);
+});
+
 var rowNum = 1;
 function addRow(frm) {
 	
@@ -89,20 +105,6 @@ function addRow(frm) {
 // $("#uploadPhoto").change(function(){
 //     readURL(this);
 // });
-
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            $('#previewHolder').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-$("#filePhoto").change(function() {
-    readURL(this);
-});
 
 
 </script>

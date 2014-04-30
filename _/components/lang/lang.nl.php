@@ -47,6 +47,7 @@ $lang['model']								= 'Model';
 $lang['partName']							= 'Onderdeel';
 
 //SEARCH PART
+$lang['SEARCHPART_TITLE'] = 'Onderdelen';
 $lang['SEARCHPART_CATEGORY'] = 'Categorie';
 $lang['SELECT_CATEGORY'] = 'Selecteer een categorie';
 $lang['SEARCHPART_SUBCATEGORY'] = 'Subcategorie';
@@ -58,6 +59,7 @@ $lang['SEARCHPART_ADDROW'] = 'Onderdeel toevoegen';
 $lang['SEARCHPART_REMOVEROW'] = 'Onderdeel verwijderen';
 $lang['SEARCHPART_SAVE'] = 'Opslaan';
 $lang['SEARCHPART_SELECTEDPARTS_TITLE'] = 'Geselecteerd onderdelen';
+$lang['SEARCHPART_PREVIEW'] = 'Uw geselecteerde foto';
 
 //SEARCH CONTACT
 $lang['SEARCHCONTACT_TITLE'] = 'Contactgegevens';
@@ -113,6 +115,9 @@ $lang['FIELD_LEAST_ONE'] = 'minimaal één veld is verplicht';
 $lang['CAR_MODEL_REQ'] = 'Het model is vereist in de zoekopdracht';
 $lang['CAR_BRAND_REQ'] = 'Het merk is vereist in de zoekopdracht';
 $lang['CAR_ENGINE_REQ'] = 'Het type van de motor is vereist in de zoekopdracht';	
+
+//PDF
+$lang['HEADER_SEARCHREQUEST_DETAILS'] = 'Zoekopdracht - details';
 
 
 

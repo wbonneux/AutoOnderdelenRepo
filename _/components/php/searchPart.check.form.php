@@ -19,7 +19,35 @@ if (isset ( $_POST ['searchRequestArticle'])) {
 	$ses_id = session_id();
 	if(isset($_POST['partName'])){ $_SESSION['partName'] = $_POST["partName"];}
 	if(isset($_POST['partDetails'])){ $_SESSION['partDetails'] = $_POST["partDetails"];}
-	if(isset($_FILES['uploadPhoto'])){$_SESSION['partFile'] = $_FILES["uploadPhoto"]["name"];}
+	if(isset($_FILES['uploadPhoto'])){
+		if($_FILES['uploadPhoto']['name'] != '')
+		{
+			$_SESSION['partFile'] = $_FILES["uploadPhoto"]["name"];
+		}
+		if(!file_exists("./images/tempory/".$ses_id)){
+			mkdir("./images/tempory/".$ses_id);
+		}
+		if(!file_exists("./images/tempory/".$ses_id."/".$_FILES["uploadPhoto"]["name"])){
+			$tempFile = $_FILES['uploadPhoto']['tmp_name'];
+			move_uploaded_file($_FILES["uploadPhoto"]["tmp_name"], "./images/tempory/".$ses_id."/".$_FILES["uploadPhoto"]["name"]);
+			$_SESSION['File'] = "./images/tempory/".$ses_id."/".$_FILES["uploadPhoto"]["name"];
+// 			echo "uploaded";
+// 			echo "Stored in: " . $_FILES["uploadPhoto"]["tmp_name"];
+// 			echo "Stored in: " . $_FILES["uploadPhoto"]["name"];
+			// Check $_FILES['upfile']['error'] value.
+			switch ($_FILES['uploadPhoto']['error']) {
+				case UPLOAD_ERR_OK:
+					break;
+				case UPLOAD_ERR_NO_FILE:
+					throw new RuntimeException('No file sent.');
+				case UPLOAD_ERR_INI_SIZE:
+				case UPLOAD_ERR_FORM_SIZE:
+					throw new RuntimeException('Exceeded filesize limit.');
+				default:
+					throw new RuntimeException('Unknown errors.');
+			}
+		} 
+	}
 	
 	//1. validate the form with the post variables
 	$brandSelect = $_POST ["partName"];
@@ -43,30 +71,7 @@ if (isset ( $_POST ['searchRequestArticle'])) {
 		if(!file_exists("./images/tempory/".$ses_id)){
 			mkdir("./images/tempory/".$ses_id, 0777, true);
 		}
-		if(!file_exists("./images/tempory/".$ses_id."/".$_FILES["uploadPhoto"]["name"])){
-			$tempFile = $_FILES['uploadPhoto']['tmp_name'];
-			move_uploaded_file($_FILES["uploadPhoto"]["tmp_name"], "./images/tempory/".$ses_id."/".$_FILES["uploadPhoto"]["name"]);
-			echo "uploaded";
-			echo "Stored in: " . $_FILES["uploadPhoto"]["tmp_name"];
-			echo "Stored in: " . $_FILES["uploadPhoto"]["name"];
-			// Check $_FILES['upfile']['error'] value.
-			switch ($_FILES['uploadPhoto']['error']) {
-				case UPLOAD_ERR_OK:
-					break;
-				case UPLOAD_ERR_NO_FILE:
-					throw new RuntimeException('No file sent.');
-				case UPLOAD_ERR_INI_SIZE:
-				case UPLOAD_ERR_FORM_SIZE:
-					throw new RuntimeException('Exceeded filesize limit.');
-				default:
-					throw new RuntimeException('Unknown errors.');
-			}
-		}
 	}
-	
-	
-	
-	
 }
 
 
