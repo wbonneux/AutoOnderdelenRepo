@@ -9,7 +9,7 @@ require_once('BaseCommonMySqlDAO.class.php');
 
 class UserReplyMySqlDAO extends BaseCommonMySqlDAO {
 
-	private $table = 'USER_REPLY';
+	private $table = 'user_reply';
 	/**
 	 * Get Domain object by primry key
 	 *
@@ -57,7 +57,7 @@ class UserReplyMySqlDAO extends BaseCommonMySqlDAO {
  	 * @param AlbumMySql Album
  	 */
 	public function insert($userReply){
-		$sql = 'INSERT INTO USER_REPLY (O_USER_IDF_TECH, L_I_EMAIL, L_I_PHONE, L_I_GSM, L_I_ADDRESS, D_I_BEGIN, D_I_END, S_I_CREATE_TECH) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO user_reply (O_USER_IDF_TECH, L_I_EMAIL, L_I_PHONE, L_I_GSM, L_I_ADDRESS, D_I_BEGIN, D_I_END, S_I_CREATE_TECH) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($userReply->userId);
 		$sqlQuery->set($userReply->email);
@@ -76,7 +76,7 @@ class UserReplyMySqlDAO extends BaseCommonMySqlDAO {
  	 * Update record in table
  	 */
 	public function update($userReply){
-		$sql = 'UPDATE USER_REPLY SET O_USER_IDF_TECH = ?, L_I_EMAIL = ?, L_I_PHONE = ?, L_I_GSM = ?, L_I_STREET = ?, D_I_BEGIN = ?, D_I_END = ? WHERE O_I_IDF_TECH = ?';
+		$sql = 'UPDATE user_reply SET O_USER_IDF_TECH = ?, L_I_EMAIL = ?, L_I_PHONE = ?, L_I_GSM = ?, L_I_STREET = ?, D_I_BEGIN = ?, D_I_END = ? WHERE O_I_IDF_TECH = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($userReply->userId);

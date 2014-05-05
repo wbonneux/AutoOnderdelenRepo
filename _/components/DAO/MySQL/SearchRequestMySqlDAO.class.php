@@ -9,7 +9,7 @@ require_once('BaseCommonMySqlDAO.class.php');
 
 class SearchRequestMySqlDAO extends BaseCommonMySqlDAO {
 
-	private $table = 'SEARCH_REQUEST';
+	private $table = 'search_request';
 	/**
 	 * Get Domain object by primry key
 	 *
@@ -57,7 +57,7 @@ class SearchRequestMySqlDAO extends BaseCommonMySqlDAO {
  	 * @param AlbumMySql Album
  	 */
 	public function insert($searchRequest){
-		$sql = 'INSERT INTO SEARCH_REQUEST (O_USERCONTACT_IDF_TECH, O_USERREPLY_IDF_TECH, T_I_CHASSIS, T_I_KILOWATT, L_I_ACTIVE, S_I_CREATE_TECH) VALUES (?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO search_request (O_USERCONTACT_IDF_TECH, O_USERREPLY_IDF_TECH, T_I_CHASSIS, T_I_KILOWATT, L_I_ACTIVE, S_I_CREATE_TECH) VALUES (?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($searchRequest->userContactId);
 		$sqlQuery->set($searchRequest->userReplyId);
@@ -76,7 +76,7 @@ class SearchRequestMySqlDAO extends BaseCommonMySqlDAO {
  	 * @param AlbumMySql Album
  	 */
 	public function update($searchRequest){
-		$sql = 'UPDATE SEARCH_REQUEST SET O_USERCONTACT_IDF_TECH = ?, O_USERREPLY_IDF_TECH = ?, T_I_CHASSIS = ?, T_I_KILOWATT = ?, L_I_ACTIVE = ?, S_I_MOD_TECH = ? WHERE O_I_IDF_TECH = ?) VALUES (?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'UPDATE search_request SET O_USERCONTACT_IDF_TECH = ?, O_USERREPLY_IDF_TECH = ?, T_I_CHASSIS = ?, T_I_KILOWATT = ?, L_I_ACTIVE = ?, S_I_MOD_TECH = ? WHERE O_I_IDF_TECH = ?) VALUES (?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($searchRequest->userContactId);

@@ -66,6 +66,7 @@ class BaseMySqlDAO implements BaseDAO
 	 * @return Object           :the result(success/error)
 	 */
 	public function executeInsert($sqlQuery){
+		//echo 'executeInsert<br>';
 		return QueryExecutor::executeInsert($sqlQuery);
 	}
 	

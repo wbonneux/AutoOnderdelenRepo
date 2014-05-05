@@ -64,7 +64,7 @@ class CodeCarModelMySqlExtDAO extends BaseCodeMySqlDAO {
 	 * @return list
 	 */
 	public function getCarModelsByBrandId($brandId, $lang) {
-		$sql = "SELECT C_I_IDF_TECH, ".$this->getDescrColumn($lang)." FROM CODE_CAR_MODEL WHERE C_CARBRAND_IDF_TECH = ".$brandId." ORDER BY ".$this->getDescrColumn($lang);
+		$sql = "SELECT C_I_IDF_TECH, ".$this->getDescrColumn($lang)." FROM code_car_model WHERE C_CARBRAND_IDF_TECH = ".$brandId." ORDER BY ".$this->getDescrColumn($lang);
 		$sqlQuery = new SqlQuery($sql);
 		$tab = $this->execute($sqlQuery);
 		$ret = array();

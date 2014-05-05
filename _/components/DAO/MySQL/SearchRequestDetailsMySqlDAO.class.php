@@ -9,7 +9,7 @@ require_once('BaseCommonMySqlDAO.class.php');
 
 class SearchRequestDetailsMySqlDAO extends BaseCommonMySqlDAO {
 
-	private $table = 'SEARCH_REQUEST_DETAILS';
+	private $table = 'search_request_details';
 	/**
 	 * Get Domain object by primry key
 	 *
@@ -55,7 +55,7 @@ class SearchRequestDetailsMySqlDAO extends BaseCommonMySqlDAO {
  	 * Insert record to table
  	 */
 	public function insert($searchRequestDetails){
-		$sql = 'INSERT INTO SEARCH_REQUEST_DETAILS (O_SEARCHREQUEST_IDF_TECH, C_CARBRAND_IDF_TECH, C_CARMODEL_IDF_TECH, C_BUILDYEAR_IDF_TECH, C_BUILDMONTH_IDF_TECH, C_EXECUTION_IDF_TECH, C_DOORS_IDF_TECH, C_ENGINETYPE_IDF_TECH, C_DRIVETYPE_IDF_TECH, C_GEARBOX_IDF_TECH, T_I_DETAILS, S_I_CREATE_TECH) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO search_request_details (O_SEARCHREQUEST_IDF_TECH, C_CARBRAND_IDF_TECH, C_CARMODEL_IDF_TECH, C_BUILDYEAR_IDF_TECH, C_BUILDMONTH_IDF_TECH, C_EXECUTION_IDF_TECH, C_DOORS_IDF_TECH, C_ENGINETYPE_IDF_TECH, C_DRIVETYPE_IDF_TECH, C_GEARBOX_IDF_TECH, T_I_DETAILS, S_I_CREATE_TECH) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($searchRequestDetails->searchRequestId);
 		$sqlQuery->set($searchRequestDetails->carBrandId);
@@ -78,7 +78,7 @@ class SearchRequestDetailsMySqlDAO extends BaseCommonMySqlDAO {
  	 * Update record in table
  	 */
 	public function update($searchRequestDetails){
-		$sql = 'UPDATE SEARCH_REQUEST_DETAILS SET O_SEARCHREQUEST_IDF_TECH = ?, C_CARBRAND_IDF_TECH = ?, C_CARMODEL_IDF_TECH = ?, C_BUILDYEAR_IDF_TECH = ?, C_BUILDMONTH_IDF_TECH = ?, C_EXECUTION_IDF_TECH = ?, C_DOORS_IDF_TECH = ?, C_ENGINETYPE_IDF_TECH = ?, C_DRIVETYPE_IDF_TECH = ?, C_GEARBOX_IDF_TECH = ?, T_I_DETAILS = ?, S_I_MOD_TECH = ? WHERE O_I_IDF_TECH = ?';
+		$sql = 'UPDATE search_request_details SET O_SEARCHREQUEST_IDF_TECH = ?, C_CARBRAND_IDF_TECH = ?, C_CARMODEL_IDF_TECH = ?, C_BUILDYEAR_IDF_TECH = ?, C_BUILDMONTH_IDF_TECH = ?, C_EXECUTION_IDF_TECH = ?, C_DOORS_IDF_TECH = ?, C_ENGINETYPE_IDF_TECH = ?, C_DRIVETYPE_IDF_TECH = ?, C_GEARBOX_IDF_TECH = ?, T_I_DETAILS = ?, S_I_MOD_TECH = ? WHERE O_I_IDF_TECH = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($searchRequestDetails->searchRequestId);
 		$sqlQuery->setNumber($searchRequestDetails->carBrandId);

@@ -9,7 +9,7 @@ require_once('BaseCommonMySqlDAO.class.php');
 
 class UserContactMySqlDAO extends BaseCommonMySqlDAO {
 
-	private $table = 'USER_CONTACT';
+	private $table = 'user_contact';
 	/**
 	 * Get Domain object by primry key
 	 *
@@ -55,7 +55,7 @@ class UserContactMySqlDAO extends BaseCommonMySqlDAO {
  	 * Insert record to table
  	 */
 	public function insert($userContact){
-		$sql = 'INSERT INTO USER_CONTACT (O_USER_IDF_TECH, T_I_NAME, T_I_FNAME,T_I_COMPANY_NAME, T_I_EMAIL, T_I_PHONE, T_I_GSM, T_I_STREET, T_I_HOUSENR, T_I_BUSNR, T_I_POSTALCODE, T_I_COMMUNITY, C_CODECOUNTRY_IDF_TECH, T_I_DETAILS, D_I_BEGIN, D_I_END, S_I_CREATE_TECH) VALUES (?, ?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO user_contact (O_USER_IDF_TECH, T_I_NAME, T_I_FNAME,T_I_COMPANY_NAME, T_I_EMAIL, T_I_PHONE, T_I_GSM, T_I_STREET, T_I_HOUSENR, T_I_BUSNR, T_I_POSTALCODE, T_I_COMMUNITY, C_CODECOUNTRY_IDF_TECH, T_I_DETAILS, D_I_BEGIN, D_I_END, S_I_CREATE_TECH) VALUES (?, ?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($userContact->userId);
 		$sqlQuery->set($userContact->name);
@@ -83,7 +83,7 @@ class UserContactMySqlDAO extends BaseCommonMySqlDAO {
  	 * Update record in table
  	 */
 	public function update($userContact){
-		$sql = 'UPDATE USER_CONTACT SET O_USER_IDF_TECH = ?, T_I_NAME = ?, T_I_FNAME = ?, T_I_COMPANY_NAME = ?, T_I_EMAIL = ?, T_I_PHONE = ?, T_I_GSM = ?, T_I_STREET = ?, T_I_HOUSENR = ?, T_I_BUSNR = ?, T_I_POSTALCODE = ?, T_I_COMMUNITY = ?, C_CODECOUNTRY_IDF_TECH = ?, T_I_DETAILS = ?, D_I_BEGIN = ?, D_I_END = ?, S_I_MOD_TECH WHERE O_I_IDF_TECH = ?';
+		$sql = 'UPDATE user_contact SET O_USER_IDF_TECH = ?, T_I_NAME = ?, T_I_FNAME = ?, T_I_COMPANY_NAME = ?, T_I_EMAIL = ?, T_I_PHONE = ?, T_I_GSM = ?, T_I_STREET = ?, T_I_HOUSENR = ?, T_I_BUSNR = ?, T_I_POSTALCODE = ?, T_I_COMMUNITY = ?, C_CODECOUNTRY_IDF_TECH = ?, T_I_DETAILS = ?, D_I_BEGIN = ?, D_I_END = ?, S_I_MOD_TECH WHERE O_I_IDF_TECH = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($userContact->userId);

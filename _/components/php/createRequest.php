@@ -103,15 +103,15 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 //Model & Details
 $pdf->printHeader($lang['HEADER_SEARCHREQUEST_DETAILS']);
-$pdf->printLabelId($lang['SEARCHREQUEST_BRAND'], $searchRequestDetails->carBrandId, 'CODE_CAR_BRAND');
-$pdf->printLabelId($lang['SEARCHREQUEST_MODEL'], $searchRequestDetails->carModelId, 'CODE_CAR_MODEL');
-$pdf->printLabelId($lang['SEARCHREQUEST_BUILDYEAR'], $searchRequestDetails->buildYearId, 'CODE_CAR_BUILDYEAR');
-$pdf->printLabelId($lang['SEARCHREQUEST_BUILDMONTH'], $searchRequestDetails->buildMonthId, 'CODE_CAR_BUILDMONTH');
-$pdf->printLabelId($lang['SEARCHREQUEST_CAREXECUTION'], $searchRequestDetails->carExecutionId, 'CODE_CAR_EXECUTION');
-$pdf->printLabelId($lang['SEARCHREQUEST_DOORNUMBER'], $searchRequestDetails->carDoorsId, 'CODE_CAR_DOORS');
-$pdf->printLabelId($lang['SEARCHREQUEST_DRIVETYPE'], $searchRequestDetails->driveTypeId, 'CODE_CAR_DRIVETYPE');
-$pdf->printLabelId($lang['SEARCHREQUEST_ENGINETYPE'], $searchRequestDetails->engineTypeId, 'CODE_CAR_ENGINETYPE');
-$pdf->printLabelId($lang['SEARCHREQUEST_GEARBOX'], $searchRequestDetails->gearboxId, 'CODE_CAR_GEARBOX');
+$pdf->printLabelId($lang['SEARCHREQUEST_BRAND'], $searchRequestDetails->carBrandId, 'code_car_brand');
+$pdf->printLabelId($lang['SEARCHREQUEST_MODEL'], $searchRequestDetails->carModelId, 'code_car_model');
+$pdf->printLabelId($lang['SEARCHREQUEST_BUILDYEAR'], $searchRequestDetails->buildYearId, 'code_car_buildyear');
+$pdf->printLabelId($lang['SEARCHREQUEST_BUILDMONTH'], $searchRequestDetails->buildMonthId, 'code_car_buildmonth');
+$pdf->printLabelId($lang['SEARCHREQUEST_CAREXECUTION'], $searchRequestDetails->carExecutionId, 'code_car_execution');
+$pdf->printLabelId($lang['SEARCHREQUEST_DOORNUMBER'], $searchRequestDetails->carDoorsId, 'code_car_doors');
+$pdf->printLabelId($lang['SEARCHREQUEST_DRIVETYPE'], $searchRequestDetails->driveTypeId, 'code_car_drivetype');
+$pdf->printLabelId($lang['SEARCHREQUEST_ENGINETYPE'], $searchRequestDetails->engineTypeId, 'code_car_enginetype');
+$pdf->printLabelId($lang['SEARCHREQUEST_GEARBOX'], $searchRequestDetails->gearboxId, 'code_car_gearbox');
 $pdf->printTextArea($lang['SEARCHREQUEST_DETAILS'], $searchRequestDetails->details);
 //Onderdelen
 $pdf->printHeader($lang['SEARCHPART_TITLE']);
@@ -131,7 +131,7 @@ $pdf->printLabelValue($lang['SEARCHCONTACT_STREET'], $userContact->street);
 $pdf->printLabelValue($lang['SEARCHCONTACT_HOUSENR'], $userContact->houseNumber);
 $pdf->printLabelValue($lang['SEARCHCONTACT_HOUSEBUS'], $userContact->bus);
 $pdf->printLabelValue($lang['SEARCHCONTACT_POSTALCODE'], $userContact->postalCode);
-$pdf->printLabelId($lang['SEARCHCONTACT_COUNTRY'], $userContact->countryId,'CODE_COUNTRY');
+$pdf->printLabelId($lang['SEARCHCONTACT_COUNTRY'], $userContact->countryId,'code_country');
 $pdf->printLabelValue($lang['SEARCHCONTACT_DETAILS'], $userContact->details);
 
 

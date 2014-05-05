@@ -9,7 +9,7 @@ require_once('BaseCommonMySqlDAO.class.php');
 
 class SearchArticleMySqlDAO extends BaseCommonMySqlDAO{
 
-	private $table = 'SEARCH_ARTICLE';
+	private $table = 'search_article';
 	/**
 	 * Get Domain object by primry key
 	 *
@@ -57,7 +57,7 @@ class SearchArticleMySqlDAO extends BaseCommonMySqlDAO{
  	 * @param AlbumMySql Album
  	 */
 	public function insert($searchArticle){
-		$sql = 'INSERT INTO SEARCH_ARTICLE (O_SEARCHREQUEST_IDF_TECH, O_CARCATEGORY_IDF_TECH, O_CARSUBCATEGORY_IDF_TECH, T_I_DESCRIPTION, T_I_IMAGE, T_I_ARTICLENUMBER, S_I_CREATE_TECH) VALUES (?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO search_article (O_SEARCHREQUEST_IDF_TECH, O_CARCATEGORY_IDF_TECH, O_CARSUBCATEGORY_IDF_TECH, T_I_DESCRIPTION, T_I_IMAGE, T_I_ARTICLENUMBER, S_I_CREATE_TECH) VALUES (?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($searchArticle->searchRequestId);
 		$sqlQuery->set($searchArticle->categoryId);
@@ -77,7 +77,7 @@ class SearchArticleMySqlDAO extends BaseCommonMySqlDAO{
  	 * @param AlbumMySql Album
  	 */
 	public function update($searchArticle){
-		$sql = 'UPDATE SEARCH_ARTICLE SET O_SEARCHREQUEST_IDF_TECH = ?, O_CARCATEGORY_IDF_TECH = ?, O_CARSUBCATEGORY_IDF_TECH = ?, T_I_DESCRIPTION = ?, T_I_IMAGE = ?, T_I_ARTICLENUMBER = ?, S_I_MOD_TECH = ? WHERE O_I_IDF_TECH = ?';
+		$sql = 'UPDATE search_article SET O_SEARCHREQUEST_IDF_TECH = ?, O_CARCATEGORY_IDF_TECH = ?, O_CARSUBCATEGORY_IDF_TECH = ?, T_I_DESCRIPTION = ?, T_I_IMAGE = ?, T_I_ARTICLENUMBER = ?, S_I_MOD_TECH = ? WHERE O_I_IDF_TECH = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($searchArticle->searchRequestId);
