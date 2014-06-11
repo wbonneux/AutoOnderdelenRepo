@@ -16,10 +16,8 @@
 	  	var $userContactId;
 // 		C_USERREPLY_IDF_TECH
 	  	var $userReplyId;
-// 		T_I_CHASSIS
-	  	var $chassis;	
-// 		T_I_KILOWATT
-	  	var $kilowatt;
+//		O_SEARCHREQUESTTYPE_IDF_TECH
+		var $searchRequestType;	  	
 // 		L_I_ACTIVE
 	  	var $active;
 	}

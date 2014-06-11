@@ -32,6 +32,16 @@
 		var $driveTypeId;
 //		C_GEARBOX_IDF_TECH
 		var $gearboxId;
+//		T_I_CC
+		var $cc;
+//		T_I_KILOWATT
+		var $kilowatt;
+//		T_I_CHASSIS
+		var $chassis;
+//		T_I_CODE
+		var $code;
+//		O_PARTSTYPE_IDF_TECH
+		var $partsType;		
 //		T_I_DETAILS
 		var $details;
 	}

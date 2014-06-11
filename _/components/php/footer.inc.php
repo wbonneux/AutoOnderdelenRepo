@@ -5,7 +5,12 @@
       <footer>
         <div class="row">
           <div class="col-lg-12">
-            <p>Copyright &copy; Company 2013</p>
+            <div class="copyright">
+				<p style="font-size:18px">
+					Copyright © 2014 - Webdesign by <a target='blank' style="font-size:20px"
+						href="http://www.webbo-sitedesign.be">Webbo</a>
+				</p>
+			</div>
           </div>
         </div>
       </footer>

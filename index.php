@@ -15,21 +15,21 @@ include_once '_/components/php/header.inc.php';
 		<div class="row" style="margin-top:50px">
 			<div class="col-lg-4 col-md-4">
 				<div class="thumbnail" style="text-align: center;vertical-align: middle;min-height:200px;">
-					<a href="ikzoek.php?type=motor">
+					<a href="ikzoek.php?type=engine">
 					Ik zoek <br><b>motoren</b>
 					</a>
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-4">
 				<div class="thumbnail" style="text-align: center;vertical-align: middle;min-height:200px;">
-					<a href="ikzoek.php?type=versnellingsbak">
+					<a href="ikzoek.php?type=gearbox">
 						Ik zoek <br><b>Versnellingsbakken</b>
 					</a>
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-4">
 				<div class="thumbnail" style="text-align: center;vertical-align: middle;min-height:200px;">
-					<a href="ikzoek.php?type=parts">
+					<a href="ikzoek.php?type=part">
 						Ik zoek <br><b>Parts</b>
 					</a>
 				</div>

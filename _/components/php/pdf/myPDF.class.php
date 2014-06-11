@@ -6,15 +6,22 @@ class PDF extends FPDF {
 	var $searchRequestDetails = null;
 	var$userContact = null;
 	var $userReply = null;
-	var $searchArticle = null;
+// 	var $searchArticle = null;
 	var $baseCodeDAO = null;
 	
-	function fillObjects($searchRequest, $searchRequestDetails, $userContact, $userReply, $searchArticle){
+// 	function fillObjects($searchRequest, $searchRequestDetails, $userContact, $userReply, $searchArticle){
+// 		$this->searchRequest = $searchRequest;
+// 		$this->searchRequestDetails = $searchRequestDetails;
+// 		$this->searchArticle = $searchArticle;
+// 		$this->userContact = $userContact;
+// 		$this->userReply = $userReply;
+// 		$this->baseCodeDAO = DAOFactory::getCodeTableDAO();
+// 	}
+	
+	function fillObjects($searchRequest, $searchRequestDetails, $userContact){
 		$this->searchRequest = $searchRequest;
 		$this->searchRequestDetails = $searchRequestDetails;
-		$this->searchArticle = $searchArticle;
 		$this->userContact = $userContact;
-		$this->userReply = $userReply;
 		$this->baseCodeDAO = DAOFactory::getCodeTableDAO();
 	}
 	function Header() {
@@ -35,6 +42,16 @@ class PDF extends FPDF {
 		$this->SetFillColor(200,220,255);
 		// Title
 		$this->Cell (0, 6, $headerTitle, 0, 1, 'L',true );
+		// Line break
+		$this->Ln ( 4 );
+	}
+	
+	function printHeaderWithId($headerTitle, $id, $table){
+		$value = $this->baseCodeDAO->getDescrByLang($id, $table, 'nl');
+		$this->SetFont ( 'Arial', 'B', 14 );
+		$this->SetFillColor(200,220,255);
+		// Title
+		$this->Cell (0, 6, $headerTitle.' '.$value, 0, 1, 'L',true );
 		// Line break
 		$this->Ln ( 4 );
 	}
@@ -100,7 +117,7 @@ class PDF extends FPDF {
 		$this->SetFont ( 'Arial', 'B', 10 );
 		$this->SetFillColor(200,220,255);
 		// label
-		$this->Cell (35, 4, $label, 0, 0, 'L',true );
+		$this->Cell (40, 4, $label, 0, 0, 'L',true );
 	}
 	
 	function printValue($value){

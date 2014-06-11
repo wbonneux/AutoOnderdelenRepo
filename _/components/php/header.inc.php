@@ -39,7 +39,7 @@ session_start();
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="index.php"><?php echo $lang['MENU_COMPANY']; ?></a></li>
-            <li><a href="zoekopdracht.php"><?php echo $lang['MENU_SEARCHREQUEST']; ?></a></li>
+            <!-- <li><a href="zoekopdracht.php"><?php //echo $lang['MENU_SEARCHREQUEST']; ?></a></li> -->
             <li><a href="contact.php"><?php echo $lang['MENU_CONTACT']; ?></a></li>
 <!--             <li class="dropdown"> -->
 <!--               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b class="caret"></b></a> -->

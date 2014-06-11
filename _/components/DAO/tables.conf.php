@@ -18,7 +18,7 @@ define('USERCONTACT','user_contact');
 define('USERREPLY','user_reply');
 define('CARCATEGORY','code_car_category');
 define('CARSUBCATEGORY','code_car_subcategory');
-
+define('PARTSTYPE','CODE_PARTS_TYPE');
 
 
 ?>

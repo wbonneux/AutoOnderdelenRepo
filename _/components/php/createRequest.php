@@ -12,14 +12,14 @@
 
 
 //userReply
-$userReply = new UserReply();
-$userReplyDAO = DAOFactory::getUserReplyDAO();
-$userReply->address = getSessionVar('userReplyAddress');
-$userReply->userId = getSessionVar('userId');
-$userReply->gsm = getSessionVar('userReplyGSM');
-$userReply->phone = getSessionVar('userReplyPhone');
-$userReply->email = getSessionVar('userReplyEmail');
-$userReply->id = $userReplyDAO->insert($userReply).'<br>';
+// $userReply = new UserReply();
+// $userReplyDAO = DAOFactory::getUserReplyDAO();
+// $userReply->address = getSessionVar('userReplyAddress');
+// $userReply->userId = getSessionVar('userId');
+// $userReply->gsm = getSessionVar('userReplyGSM');
+// $userReply->phone = getSessionVar('userReplyPhone');
+// $userReply->email = getSessionVar('userReplyEmail');
+// $userReply->id = $userReplyDAO->insert($userReply).'<br>';
 
 //userContact
 $userContact = new UserContact();
@@ -28,13 +28,14 @@ $userContact->name = getSessionVar('contact_name');
 $userContact->firstName = getSessionVar('contact_fname');
 $userContact->companyName = getSessionVar('contact_compname');
 $userContact->email = getSessionVar('contact_email');
-$userContact->gsm = getSessionVar('contact_gsm');
+//$userContact->gsm = getSessionVar('contact_gsm');
 $userContact->phone = getSessionVar('contact_tel');
 //todo -> fax
 $userContact->street = getSessionVar('contact_street');
 $userContact->houseNumber = getSessionVar('contact_housenr');
 $userContact->bus = getSessionVar('contact_housebus');
 $userContact->postalCode = getSessionVar('contact_postalcode');
+$userContact->community = getSessionVar('contact_community');
 $userContact->details = getSessionVar('contact_details');
 //todo -> community,state
 $userContact->countryId = getSessionVar('contact_country');
@@ -44,32 +45,43 @@ $userContact->id = $userContactDAO->insert($userContact);
 //searchRequest
 $searchRequest = new SearchRequest();
 $searchRequestDAO = DAOFactory::getSearchRequestDAO();
-$searchRequest->userReplyId = $userReply->id;
+//$searchRequest->userReplyId = $userReply->id;
 $searchRequest->userContactId = $userContact->id;
+switch(getSessionVar('type')){
+	case 'engine':
+		$searchRequest->searchRequestType = 3;
+		break;
+	case 'gearbox':
+		$searchRequest->searchRequestType = 1;
+		break;
+	case 'part':
+		$searchRequest->searchRequestType = 2;
+		break;
+}
 $searchRequest->active = 1;
-$searchRequest->kilowatt = getSessionVar('searchRequestKiloWatt');
-$searchRequest->created = getSessionVar('searchRequestChassis');
+// $searchRequest->kilowatt = getSessionVar('searchRequestKiloWatt');
+// $searchRequest->created = getSessionVar('searchRequestChassis');
 $searchRequest-> id =$searchRequestDAO->insert($searchRequest);
 // echo '<br>';
 // echo 'searchRequestid: '.$searchRequest->id.'<br>';
 
-//searchArticles/Parts
-$searchArticle = new SearchArticle();
-$searchArticleDAO = DAOFactory::getSearchArticleDAO();
-$searchArticle->articleNumber = getSessionVar('partName');
-$searchArticle->descr = getSessionVar('partDetails');
-$searchArticle->categoryId = getSessionVar('partCategory');
-$searchArticle->subCategoryId = getSessionVar('partSubCategory');
-$searchArticle->searchRequestId = $searchRequest->id;
-//insert & update the image field with the uploaded url
-$searchArticle->id = $searchArticleDAO->insert($searchArticle);
-if(!file_exists("./images/SearchRequests/SearchParts/".$searchArticle->id)){
-	mkdir("./images/SearchRequests/SearchParts/".$searchArticle->id);
-}
-//copy the file
-copy($_SESSION["File"],"./images/SearchRequests/SearchParts/".$searchArticle->id."/".$_SESSION["partFile"]);
-$searchArticle->image = "./images/SearchRequests/SearchParts/".$searchArticle->id."/".$_SESSION["partFile"];
-$searchArticleDAO->update($searchArticle);
+// //searchArticles/Parts
+// $searchArticle = new SearchArticle();
+// $searchArticleDAO = DAOFactory::getSearchArticleDAO();
+// $searchArticle->articleNumber = getSessionVar('partName');
+// $searchArticle->descr = getSessionVar('partDetails');
+// $searchArticle->categoryId = getSessionVar('partCategory');
+// $searchArticle->subCategoryId = getSessionVar('partSubCategory');
+// $searchArticle->searchRequestId = $searchRequest->id;
+// //insert & update the image field with the uploaded url
+// $searchArticle->id = $searchArticleDAO->insert($searchArticle);
+// if(!file_exists("./images/SearchRequests/SearchParts/".$searchArticle->id)){
+// 	mkdir("./images/SearchRequests/SearchParts/".$searchArticle->id);
+// }
+// //copy the file
+// copy($_SESSION["File"],"./images/SearchRequests/SearchParts/".$searchArticle->id."/".$_SESSION["partFile"]);
+// $searchArticle->image = "./images/SearchRequests/SearchParts/".$searchArticle->id."/".$_SESSION["partFile"];
+// $searchArticleDAO->update($searchArticle);
 //remove the session directory
 //unlink($_SESSION["File"]);
 //upload photo to directory(images\SearchRequests\SearchParts\'id')
@@ -87,60 +99,108 @@ $searchRequestDetails->carModelId = getSessionVar('model');
 $searchRequestDetails->buildYearId = getSessionVar('buildYear');
 $searchRequestDetails->buildMonthId = getSessionVar('buildMonth');
 $searchRequestDetails->carExecutionId = getSessionVar('carexecution');
-$searchRequestDetails->carDoorsId = getSessionVar('cardoors');
+$searchRequestDetails->cc = getSessionVar('carCC');
+$searchRequestDetails->kilowatt = getSessionVar('carKilowatt');
+//$searchRequestDetails->carDoorsId = getSessionVar('cardoors');
 $searchRequestDetails->gearboxId = getSessionVar('cargearbox');
-$searchRequestDetails->driveTypeId = getSessionVar('cardrivetype');
-$searchRequestDetails->carenginetype = getSessionVar('carenginetype');
+//$searchRequestDetails->driveTypeId = getSessionVar('cardrivetype');
+$searchRequestDetails->engineTypeId = getSessionVar('carenginetype');
 $searchRequestDetails->details = getSessionVar('details');
 $searchRequestDetails->searchRequestId = $searchRequest->id;
+$searchRequestDetails->code = getSessionVar('code');
+$searchRequestDetails->chassis = getSessionVar('carChassis');
+$searchRequestDetails->partsType = getSessionVar('carPart');
+
 $searchRequestDetailsDAO->insert($searchRequestDetails);
 
 //after all inserts we can create the pdf
 include_once './_/components/php/pdf/myPDF.class.php';
 $pdf = new PDF();
-$pdf->fillObjects($searchRequest,$searchRequestDetails,$userContact,$userReply,$searchArticle);
+$pdf->fillObjects($searchRequest,$searchRequestDetails,$userContact);
 $pdf->AliasNbPages();
 $pdf->AddPage();
 //Model & Details
-$pdf->printHeader($lang['HEADER_SEARCHREQUEST_DETAILS']);
+$pdf->printHeaderWithId($lang['HEADER_SEARCHREQUEST_DETAILS'],$searchRequest->searchRequestType, 'code_searchrequest_type');
 $pdf->printLabelId($lang['SEARCHREQUEST_BRAND'], $searchRequestDetails->carBrandId, 'code_car_brand');
 $pdf->printLabelId($lang['SEARCHREQUEST_MODEL'], $searchRequestDetails->carModelId, 'code_car_model');
 $pdf->printLabelId($lang['SEARCHREQUEST_BUILDYEAR'], $searchRequestDetails->buildYearId, 'code_car_buildyear');
-$pdf->printLabelId($lang['SEARCHREQUEST_BUILDMONTH'], $searchRequestDetails->buildMonthId, 'code_car_buildmonth');
+if($searchRequestDetails->buildMonthId != null){
+	$pdf->printLabelId($lang['SEARCHREQUEST_BUILDMONTH'], $searchRequestDetails->buildMonthId, 'code_car_buildmonth');
+}
 $pdf->printLabelId($lang['SEARCHREQUEST_CAREXECUTION'], $searchRequestDetails->carExecutionId, 'code_car_execution');
-$pdf->printLabelId($lang['SEARCHREQUEST_DOORNUMBER'], $searchRequestDetails->carDoorsId, 'code_car_doors');
-$pdf->printLabelId($lang['SEARCHREQUEST_DRIVETYPE'], $searchRequestDetails->driveTypeId, 'code_car_drivetype');
+$pdf->printLabelValue($lang['SEARCHREQUEST_CC'], $searchRequestDetails->cc);
+$pdf->printLabelValue($lang['SEARCHREQUEST_KILOWATT'], $searchRequestDetails->kilowatt);
 $pdf->printLabelId($lang['SEARCHREQUEST_ENGINETYPE'], $searchRequestDetails->engineTypeId, 'code_car_enginetype');
-$pdf->printLabelId($lang['SEARCHREQUEST_GEARBOX'], $searchRequestDetails->gearboxId, 'code_car_gearbox');
-$pdf->printTextArea($lang['SEARCHREQUEST_DETAILS'], $searchRequestDetails->details);
+//$pdf->printLabelId($lang['SEARCHREQUEST_DOORNUMBER'], $searchRequestDetails->carDoorsId, 'code_car_doors');
+//$pdf->printLabelId($lang['SEARCHREQUEST_DRIVETYPE'], $searchRequestDetails->driveTypeId, 'code_car_drivetype');
+if($searchRequestDetails->chassis != null){
+	$pdf->printLabelValue($lang['SEARCHREQUEST_CHASSIS'], $searchRequestDetails->chassis);
+}
+if($searchRequestDetails->gearboxId != null){
+	$pdf->printLabelId($lang['SEARCHREQUEST_GEARBOX'], $searchRequestDetails->gearboxId, 'code_car_gearbox');
+}
+if($searchRequestDetails->partsType != null){
+	$pdf->printLabelId($lang['SEARCHREQUEST_TYPE_PART'], $searchRequestDetails->partsType, 'code_parts_type');
+}
+if($searchRequestDetails->code != null && $_SESSION['type'] == 'engine'){
+	$pdf->printLabelValue($lang['SEARCHREQUEST_ENGINE_CODE'], $searchRequestDetails->code);
+}
+if($searchRequestDetails->code != null && $_SESSION['type'] == 'gearbox'){
+	$pdf->printLabelValue($lang['SEARCHREQUEST_GEARBOX_CODE'], $searchRequestDetails->code);
+}
+if($searchRequestDetails->details != null){
+	$pdf->printTextArea($lang['SEARCHREQUEST_DETAILS'], $searchRequestDetails->details);
+}
+
+
+
 //Onderdelen
-$pdf->printHeader($lang['SEARCHPART_TITLE']);
-$pdf->printLabelValue($lang['SEARCHPART_PART'], $searchArticle->articleNumber);
-$pdf->printTextArea($lang['SEARCHPART_DETAIL'], $searchArticle->descr);
-$pdf->printImage($searchArticle->image);
+// $pdf->printHeader($lang['SEARCHPART_TITLE']);
+// $pdf->printLabelValue($lang['SEARCHPART_PART'], $searchArticle->articleNumber);
+// $pdf->printTextArea($lang['SEARCHPART_DETAIL'], $searchArticle->descr);
+// $pdf->printImage($searchArticle->image);
 //Contactpersoon
 $pdf->printHeader($lang['SEARCHCONTACT_TITLE']);
 $pdf->printLabelValue($lang['SEARCHCONTACT_NAME'], $userContact->name);
-$pdf->printLabelValue($lang['SEARCHCONTACT_FNAME'], $userContact->firstName);
-$pdf->printLabelValue($lang['SEARCHCONTACT_COMPNAME'], $userContact->companyName);
-$pdf->printLabelValue($lang['SEARCHCONTACT_TEL'], $userContact->phone);
-//$pdf->printLabelValue($lang['SEARCHCONTACT_FAX'], $userContact->);
-$pdf->printLabelValue($lang['SEARCHCONTACT_GSM'], $userContact->gsm);
+if($userContact->firstName != null){
+	$pdf->printLabelValue($lang['SEARCHCONTACT_FNAME'], $userContact->firstName);
+}
+if($userContact->companyName != null){
+	$pdf->printLabelValue($lang['SEARCHCONTACT_COMPNAME'], $userContact->companyName);
+}
 $pdf->printLabelValue($lang['SEARCHCONTACT_EMAIL'], $userContact->email);
-$pdf->printLabelValue($lang['SEARCHCONTACT_STREET'], $userContact->street);
-$pdf->printLabelValue($lang['SEARCHCONTACT_HOUSENR'], $userContact->houseNumber);
-$pdf->printLabelValue($lang['SEARCHCONTACT_HOUSEBUS'], $userContact->bus);
-$pdf->printLabelValue($lang['SEARCHCONTACT_POSTALCODE'], $userContact->postalCode);
-$pdf->printLabelId($lang['SEARCHCONTACT_COUNTRY'], $userContact->countryId,'code_country');
-$pdf->printLabelValue($lang['SEARCHCONTACT_DETAILS'], $userContact->details);
+if($userContact->phone != null){
+	$pdf->printLabelValue($lang['SEARCHCONTACT_TEL'], $userContact->phone);
+}
+//$pdf->printLabelValue($lang['SEARCHCONTACT_FAX'], $userContact->);
+//$pdf->printLabelValue($lang['SEARCHCONTACT_GSM'], $userContact->gsm);
+if($userContact->street != null){
+	$pdf->printLabelValue($lang['SEARCHCONTACT_STREET'], $userContact->street);
+}
+if($userContact->houseNumber != null){
+	$pdf->printLabelValue($lang['SEARCHCONTACT_HOUSENR'], $userContact->houseNumber);
+}
+if($userContact->bus != null){
+	$pdf->printLabelValue($lang['SEARCHCONTACT_HOUSEBUS'], $userContact->bus);
+}
+if($userContact->postalCode != null){
+	$pdf->printLabelValue($lang['SEARCHCONTACT_POSTALCODE'], $userContact->postalCode);
+}
+if($userContact->community != null){
+	$pdf->printLabelValue($lang['SEARCHCONTACT_COMMUNITY'], $userContact->community);
+}
+if($userContact->countryId != null){
+	$pdf->printLabelId($lang['SEARCHCONTACT_COUNTRY'], $userContact->countryId,'code_country');
+}
+// $pdf->printLabelValue($lang['SEARCHCONTACT_DETAILS'], $userContact->details);
 
 
 
 //Geprefereerde Communicatie
-$pdf->printHeader($lang['USERREPLY_TITLE']);
-$pdf->printLabelYesNo($lang['USERREPLY_GSM'], $userReply->gsm);
-$pdf->printLabelYesNo($lang['USERREPLY_PHONE'], $userReply->phone);
-$pdf->printLabelYesNo($lang['USERREPLY_EMAIL'], $userReply->email);
+// $pdf->printHeader($lang['USERREPLY_TITLE']);
+// $pdf->printLabelYesNo($lang['USERREPLY_GSM'], $userReply->gsm);
+// $pdf->printLabelYesNo($lang['USERREPLY_PHONE'], $userReply->phone);
+// $pdf->printLabelYesNo($lang['USERREPLY_EMAIL'], $userReply->email);
 
 
 //save the pdf in a directory SearchRequestPdf/'SearchRequest_'.$searchRequest->id.'.pdf');
@@ -187,7 +247,7 @@ $subject = 'zoekopdracht: '.$searchRequest->id;
 
 
 
-
+//enable in production
 //reset all the session vars & reset the steps
 //session_destroy();
 

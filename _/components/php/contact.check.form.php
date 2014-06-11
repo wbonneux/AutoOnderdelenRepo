@@ -1,13 +1,12 @@
 <?php
-if(isset($_POST['backSearchPart'])){
-	if(isset($_SESSION['steps']))
-	{
-		$_SESSION['steps'] = 2;
-	}
-}
 //validation
 //mandatory: name, email, one of the tel(phone || gsm)
-$validation = array ();
+$validation = array (
+		'contact_tel' => 'phone', 
+		'contact_email' => 'email',
+		'contact_postalcode' => 'int',
+		'contact_housebus' => 'int'
+		);
 $mandatory = array (
 		'contact_name' => 'contact_name',
 		'contact_email' => 'contact_email'
@@ -37,28 +36,32 @@ if (isset ( $_POST ['userContact'])) {
 	if(isset($_POST['contact_email'])){ $_SESSION['contact_email'] = $_POST["contact_email"];}
 	if(isset($_POST['contact_emailconfirm'])){ $_SESSION['contact_emailconfirm'] = $_POST["contact_emailconfirm"];}
 	
-	if(isset($_POST['userReplyGSM'])){ $_SESSION['userReplyGSM'] = 1;}else{$_SESSION['userReplyGSM'] = 0;}
-	if(isset($_POST['userReplyPhone'])){ $_SESSION['userReplyPhone'] = 1;}else{$_SESSION['userReplyPhone'] = 0;}
-	if(isset($_POST['userReplyEmail'])){ $_SESSION['userReplyEmail'] = 1;}else{$_SESSION['userReplyEmail'] = 0;}
+// 	if(isset($_POST['userReplyGSM'])){ $_SESSION['userReplyGSM'] = 1;}else{$_SESSION['userReplyGSM'] = 0;}
+// 	if(isset($_POST['userReplyPhone'])){ $_SESSION['userReplyPhone'] = 1;}else{$_SESSION['userReplyPhone'] = 0;}
+// 	if(isset($_POST['userReplyEmail'])){ $_SESSION['userReplyEmail'] = 1;}else{$_SESSION['userReplyEmail'] = 0;}
 	
 	
 	if ($validator->validate ( $_POST )) {
 //		echo '<div class="alert alert-success">Thanks for sending us a request </div>';
-		$_SESSION['steps'] = 4;
+		$_SESSION['steps'] = 3;
 	}
 	else{
-		$_SESSION['steps'] = 3;
+		$_SESSION['steps'] = 2;
 		$output = $validator->getJSON ();
 		$errors = $output ['errors'];
 		$required = $output ['required'];
+			echo '<div class="alert alert-warning">';
 		foreach ( $required as $key => $val ) {
 			// echo $val;
-	//		echo '<div class="alert alert-warning">'.$lang['ERR_REQUIRED'] . $lang[$val] . '</div>';
+			//echo '<div class="alert alert-warning">'.$lang['ERR_REQUIRED'] . $lang[$val] . '</div>';
+			echo $lang['ERR_REQUIRED'] . $lang[$val].'<br>';
 		}
 		foreach ( $errors as $key => $val ) {
 			// echo $val;
-		//	echo '<div class="alert alert-warning">'.$lang['ERR_INCORRECT'] . $lang[$val] . '</div>';
+			//echo '<div class="alert alert-warning">'.$lang['ERR_INCORRECT'] . $lang[$val] . '</div>';
+			echo $lang['ERR_INCORRECT'] . $lang[$val].'<br>';
 		}
+			echo '</div>';
 	}
 }
 ?>

@@ -55,7 +55,7 @@ class SearchRequestDetailsMySqlDAO extends BaseCommonMySqlDAO {
  	 * Insert record to table
  	 */
 	public function insert($searchRequestDetails){
-		$sql = 'INSERT INTO search_request_details (O_SEARCHREQUEST_IDF_TECH, C_CARBRAND_IDF_TECH, C_CARMODEL_IDF_TECH, C_BUILDYEAR_IDF_TECH, C_BUILDMONTH_IDF_TECH, C_EXECUTION_IDF_TECH, C_DOORS_IDF_TECH, C_ENGINETYPE_IDF_TECH, C_DRIVETYPE_IDF_TECH, C_GEARBOX_IDF_TECH, T_I_DETAILS, S_I_CREATE_TECH) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO search_request_details (O_SEARCHREQUEST_IDF_TECH, C_CARBRAND_IDF_TECH, C_CARMODEL_IDF_TECH, C_BUILDYEAR_IDF_TECH, C_BUILDMONTH_IDF_TECH, C_EXECUTION_IDF_TECH, C_DOORS_IDF_TECH, C_ENGINETYPE_IDF_TECH, C_DRIVETYPE_IDF_TECH, C_GEARBOX_IDF_TECH, T_I_CC, T_I_KW, T_I_CHASSIS, T_I_CODE, O_PARTSTYPE_IDF_TECH, T_I_DETAILS, S_I_CREATE_TECH) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($searchRequestDetails->searchRequestId);
 		$sqlQuery->set($searchRequestDetails->carBrandId);
@@ -67,6 +67,11 @@ class SearchRequestDetailsMySqlDAO extends BaseCommonMySqlDAO {
 		$sqlQuery->set($searchRequestDetails->engineTypeId);
 		$sqlQuery->set($searchRequestDetails->driveTypeId);
 		$sqlQuery->set($searchRequestDetails->gearboxId);
+		$sqlQuery->set($searchRequestDetails->cc);
+		$sqlQuery->set($searchRequestDetails->kilowatt);
+		$sqlQuery->set($searchRequestDetails->chassis);
+		$sqlQuery->set($searchRequestDetails->code);
+		$sqlQuery->set($searchRequestDetails->partsType);
 		$sqlQuery->set($searchRequestDetails->details);
 		$sqlQuery->set((new \DateTime())->format('Y-m-d H:i:s'));
 		return $this->executeInsert($sqlQuery);	
@@ -78,7 +83,7 @@ class SearchRequestDetailsMySqlDAO extends BaseCommonMySqlDAO {
  	 * Update record in table
  	 */
 	public function update($searchRequestDetails){
-		$sql = 'UPDATE search_request_details SET O_SEARCHREQUEST_IDF_TECH = ?, C_CARBRAND_IDF_TECH = ?, C_CARMODEL_IDF_TECH = ?, C_BUILDYEAR_IDF_TECH = ?, C_BUILDMONTH_IDF_TECH = ?, C_EXECUTION_IDF_TECH = ?, C_DOORS_IDF_TECH = ?, C_ENGINETYPE_IDF_TECH = ?, C_DRIVETYPE_IDF_TECH = ?, C_GEARBOX_IDF_TECH = ?, T_I_DETAILS = ?, S_I_MOD_TECH = ? WHERE O_I_IDF_TECH = ?';
+		$sql = 'UPDATE search_request_details SET O_SEARCHREQUEST_IDF_TECH = ?, C_CARBRAND_IDF_TECH = ?, C_CARMODEL_IDF_TECH = ?, C_BUILDYEAR_IDF_TECH = ?, C_BUILDMONTH_IDF_TECH = ?, C_EXECUTION_IDF_TECH = ?, C_DOORS_IDF_TECH = ?, C_ENGINETYPE_IDF_TECH = ?, C_DRIVETYPE_IDF_TECH = ?, C_GEARBOX_IDF_TECH = ?, T_I_CC = ?, T_I_KW = ?, T_I_CHASSIS = ?, T_I_CODE = ?, O_PARTSTYPE_IDF_TECH = ?, T_I_DETAILS = ?, S_I_MOD_TECH = ? WHERE O_I_IDF_TECH = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($searchRequestDetails->searchRequestId);
 		$sqlQuery->setNumber($searchRequestDetails->carBrandId);
@@ -90,6 +95,11 @@ class SearchRequestDetailsMySqlDAO extends BaseCommonMySqlDAO {
 		$sqlQuery->setNumber($searchRequestDetails->engineTypeId);
 		$sqlQuery->setNumber($searchRequestDetails->driveTypeId);
 		$sqlQuery->setNumber($searchRequestDetails->gearboxId);
+		$sqlQuery->set($searchRequestDetails->cc);
+		$sqlQuery->set($searchRequestDetails->kilowatt);
+		$sqlQuery->set($searchRequestDetails->chassis);
+		$sqlQuery->set($searchRequestDetails->code);
+		$sqlQuery->set($searchRequestDetails->partsType);
 		$sqlQuery->setString($searchRequestDetails->details);
 		$sqlQuery->set((new \DateTime())->format('Y-m-d H:i:s'));
 		$sqlQuery->setNumber($searchRequestDetails->id);
@@ -118,9 +128,14 @@ class SearchRequestDetailsMySqlDAO extends BaseCommonMySqlDAO {
 		$searchRequestDetails->engineTypeId = $row['C_ENGINETYPE_IDF_TECH'];
 		$searchRequestDetails->driveTypeId = $row['C_DRIVETYPE_IDF_TECH'];
 		$searchRequestDetails->gearBoxId = $row['C_GEARBOX_IDF_TECH'];
+		$searchRequestDetails->cc = $row['T_I_CC'];
+		$searchRequestDetails->kilowatt = $row['T_I_KILOWATT'];
+		$searchRequestDetails->chassis = $row['T_I_CHASSIS'];
+		$searchRequestDetails->code = $row['T_I_CODE'];
+		$searchRequestDetails->partsType = $row['O_PARTSTYPE_IDF_TECH'];
 		$searchRequestDetails->details = $row['T_I_DETAILS'];
 
-		return $searchArticle;
+		return $searchRequestDetails;
 	}
 	
 }
