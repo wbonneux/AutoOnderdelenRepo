@@ -14,9 +14,9 @@
  * DB_PASS: the password of the above user
  */
 define("DB_HOST", "127.0.0.1");
-define("DB_NAME", "login");
+define("DB_NAME", "recup_dev");
 define("DB_USER", "root");
-define("DB_PASS", "mysql");
+define("DB_PASS", "");
 
 /**
  * Configuration for: Cookies
@@ -62,10 +62,10 @@ define("COOKIE_SECRET_KEY", "1gp@TMPS{+$78sfpMJFe-92s");
  *
  */
 define("EMAIL_USE_SMTP", false);
-define("EMAIL_SMTP_HOST", "yourhost");
+define("EMAIL_SMTP_HOST", "uit.telenet.be");
 define("EMAIL_SMTP_AUTH", true);
-define("EMAIL_SMTP_USERNAME", "yourusername");
-define("EMAIL_SMTP_PASSWORD", "yourpassword");
+define("EMAIL_SMTP_USERNAME", "bonneux.wim@telenet.be");
+define("EMAIL_SMTP_PASSWORD", "3540he");
 define("EMAIL_SMTP_PORT", 465);
 define("EMAIL_SMTP_ENCRYPTION", "ssl");
 
@@ -73,21 +73,21 @@ define("EMAIL_SMTP_ENCRYPTION", "ssl");
  * Configuration for: password reset email data
  * Set the absolute URL to password_reset.php, necessary for email password reset links
  */
-define("EMAIL_PASSWORDRESET_URL", "http://127.0.0.1/php-login-advanced/password_reset.php");
+define("EMAIL_PASSWORDRESET_URL", "http://localhost/zend/_/components/login/password_reset.php");
 define("EMAIL_PASSWORDRESET_FROM", "no-reply@example.com");
-define("EMAIL_PASSWORDRESET_FROM_NAME", "My Project");
-define("EMAIL_PASSWORDRESET_SUBJECT", "Password reset for PROJECT XY");
-define("EMAIL_PASSWORDRESET_CONTENT", "Please click on this link to reset your password:");
+define("EMAIL_PASSWORDRESET_FROM_NAME", "AutoOnderdelen Recup");
+define("EMAIL_PASSWORDRESET_SUBJECT", "Reset van wachtwoord voor AutoOnderdelen");
+define("EMAIL_PASSWORDRESET_CONTENT", "Gelieve op deze link te klikken om uw wachtwoord te resetten:");
 
 /**
  * Configuration for: verification email data
  * Set the absolute URL to register.php, necessary for email verification links
  */
-define("EMAIL_VERIFICATION_URL", "http://127.0.0.1/php-login-advanced/register.php");
+define("EMAIL_VERIFICATION_URL", "http://localhost/zend/_/components/login/register.php");
 define("EMAIL_VERIFICATION_FROM", "no-reply@example.com");
-define("EMAIL_VERIFICATION_FROM_NAME", "My Project");
-define("EMAIL_VERIFICATION_SUBJECT", "Account activation for PROJECT XY");
-define("EMAIL_VERIFICATION_CONTENT", "Please click on this link to activate your account:");
+define("EMAIL_VERIFICATION_FROM_NAME", "AutoOnderdelen Recup");
+define("EMAIL_VERIFICATION_SUBJECT", "Actviatie van account AutoOnderdelen");
+define("EMAIL_VERIFICATION_CONTENT", "Gelieve op deze link te klikken om uw account te activeren:");
 
 /**
  * Configuration for: Hashing strength

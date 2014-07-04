@@ -110,7 +110,7 @@ class Registration
         // finally if all the above checks are ok
         } else if ($this->databaseConnection()) {
             // check if username or email already exists
-            $query_check_user_name = $this->db_connection->prepare('SELECT user_name, user_email FROM users WHERE user_name=:user_name OR user_email=:user_email');
+            $query_check_user_name = $this->db_connection->prepare('SELECT T_I_USERID, T_I_EMAIL FROM user_user WHERE T_I_USERID=:user_name OR T_I_EMAIL=:user_email');
             $query_check_user_name->bindValue(':user_name', $user_name, PDO::PARAM_STR);
             $query_check_user_name->bindValue(':user_email', $user_email, PDO::PARAM_STR);
             $query_check_user_name->execute();
@@ -120,7 +120,7 @@ class Registration
             // TODO: this is really awful!
             if (count($result) > 0) {
                 for ($i = 0; $i < count($result); $i++) {
-                    $this->errors[] = ($result[$i]['user_name'] == $user_name) ? MESSAGE_USERNAME_EXISTS : MESSAGE_EMAIL_ALREADY_EXISTS;
+                    $this->errors[] = ($result[$i]['T_I_USERID'] == $user_name) ? MESSAGE_USERNAME_EXISTS : MESSAGE_EMAIL_ALREADY_EXISTS;
                 }
             } else {
                 // check if we have a constant HASH_COST_FACTOR defined (in config/hashing.php),
@@ -136,7 +136,7 @@ class Registration
                 $user_activation_hash = sha1(uniqid(mt_rand(), true));
 
                 // write new users data into database
-                $query_new_user_insert = $this->db_connection->prepare('INSERT INTO users (user_name, user_password_hash, user_email, user_activation_hash, user_registration_ip, user_registration_datetime) VALUES(:user_name, :user_password_hash, :user_email, :user_activation_hash, :user_registration_ip, now())');
+                $query_new_user_insert = $this->db_connection->prepare('INSERT INTO user_user (T_I_USERID, T_I_PASSWORD_HASH, T_I_EMAIL, T_I_ACTIVATION_HASH, T_I_REGISTRATION_IP, S_I_REGISTRATION) VALUES(:user_name, :user_password_hash, :user_email, :user_activation_hash, :user_registration_ip, now())');
                 $query_new_user_insert->bindValue(':user_name', $user_name, PDO::PARAM_STR);
                 $query_new_user_insert->bindValue(':user_password_hash', $user_password_hash, PDO::PARAM_STR);
                 $query_new_user_insert->bindValue(':user_email', $user_email, PDO::PARAM_STR);
@@ -155,7 +155,7 @@ class Registration
                         $this->registration_successful = true;
                     } else {
                         // delete this users account immediately, as we could not send a verification email
-                        $query_delete_user = $this->db_connection->prepare('DELETE FROM users WHERE user_id=:user_id');
+                        $query_delete_user = $this->db_connection->prepare('DELETE FROM user_user WHERE O_I_IDF_TECH=:user_id');
                         $query_delete_user->bindValue(':user_id', $user_id, PDO::PARAM_INT);
                         $query_delete_user->execute();
 
@@ -224,7 +224,7 @@ class Registration
         // if database connection opened
         if ($this->databaseConnection()) {
             // try to update user with specified information
-            $query_update_user = $this->db_connection->prepare('UPDATE users SET user_active = 1, user_activation_hash = NULL WHERE user_id = :user_id AND user_activation_hash = :user_activation_hash');
+            $query_update_user = $this->db_connection->prepare('UPDATE user_user SET L_I_ACTIVE = 1, T_I_ACTIVATION_HASH = NULL WHERE O_I_IDF_TECH = :user_id AND T_I_ACTIVATION_HASH = :user_activation_hash');
             $query_update_user->bindValue(':user_id', intval(trim($user_id)), PDO::PARAM_INT);
             $query_update_user->bindValue(':user_activation_hash', $user_activation_hash, PDO::PARAM_STR);
             $query_update_user->execute();

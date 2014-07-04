@@ -10,10 +10,10 @@ $mandatory = array (
 		'brand' => 'brand',
 		'model' => 'model',
 		'buildYear' => 'buildYear',
-		'carenginetype' => 'carenginetype',
 		'carexecution' => 'carexecution',
 		'carCC' => 'carCC',
-		'carKilowatt' => 'carKilowatt'
+		'carKilowatt' => 'carKilowatt',
+		'carenginetype' => 'carenginetype'
 );
 if(isset($_SESSION['type']) & $_SESSION['type'] == 'gearbox'){
 	$mandatory['cargearbox'] = 'cargearbox';
